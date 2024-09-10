@@ -1,5 +1,3 @@
-# THIS IS STILL WIP AND IN A COMPLETELY UNFINISHED STATE.
-
 # jovann.me
 
 A personal website for me, JovannMC.
@@ -21,4 +19,4 @@ This project is licensed under the [MIT](https://opensource.org/license/MIT/) Li
 
 ## Acknowledgments
 
-- None
+- [SvelteKit](https://kit.svelte.dev/)
