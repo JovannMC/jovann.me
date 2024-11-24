@@ -1,13 +1,13 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import TypeIt from 'typeit';
 	import { Splide, SplideSlide, type Options } from '@splidejs/svelte-splide';
 	import '@splidejs/svelte-splide/css';
+	import { onMount } from 'svelte';
+	import TypeIt from 'typeit';
 
-	import Container from '../components/Container.svelte';
-	import Card from '../components/Card.svelte';
-	import ResponsiveImage from '../components/ResponsiveImage.svelte';
 	import ActionButton from '../components/ActionButton.svelte';
+	import Card from '../components/Card.svelte';
+	import Container from '../components/Container.svelte';
+	import ResponsiveImage from '../components/ResponsiveImage.svelte';
 
 	onMount(() => {
 		const phrases = [

@@ -1,9 +1,9 @@
 <script lang="ts">
-	import '../app.postcss';
-	import { AppShell, AppBar } from '@skeletonlabs/skeleton';
-	import { onMount } from 'svelte';
 	import { afterNavigate } from '$app/navigation';
+	import { AppBar, AppShell } from '@skeletonlabs/skeleton';
+	import { onMount } from 'svelte';
 	import { slide } from 'svelte/transition';
+	import '../app.postcss';
 
 	import Footer from '../components/Footer.svelte';
 

@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Container from '../../components/Container.svelte';
 	import Card from '../../components/Card.svelte';
+	import Container from '../../components/Container.svelte';
 
 	import { Splide, SplideSlide, type Options } from '@splidejs/svelte-splide';
 	import '@splidejs/svelte-splide/css';
