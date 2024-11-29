@@ -209,7 +209,7 @@
 <!-- About me Section -->
 <Container title="A little about me!">
 	<p class="text-xl text-center">
-		I'm a 15 year old from the Philippines that grew up with technology, gaming, and the internet at a young age. I love
+		I'm a 16 year old from the Philippines that grew up with technology, gaming, and the internet at a young age. I love
 		learning new things, starting projects I never finish, and hanging out with friends (especially in VR)! I do content
 		creation, program stuff, and self-host random services on my "funny" project domain. Some of my "skills" are below!
 	</p>
