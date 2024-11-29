@@ -217,7 +217,7 @@
 		<ResponsiveImage src="/images/jovann_hi.webp" width="20rem" aspectRatio="1:1" transparent={true} />
 		<div class="mt-6 lg:mt-0 text-center lg:text-left">
 			<ul class="flex flex-col list-disc list-inside text-xl gap-y-3">
-				<li>15 years of life (via Earth)</li>
+				<li>16 years of life (via Earth)</li>
 				<li>1 year of content creation (video editing + thumbnails)</li>
 				<li>1 year of self-hosting services</li>
 				<span class="text-center lg:text-left font-bold">and</span>
