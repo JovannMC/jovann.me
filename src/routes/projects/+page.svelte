@@ -118,6 +118,14 @@
 					fitPadding: 'p-12'
 				},
 				{
+					title: "VERT.sh",
+					description: "The next-generation file converter. Open source, fully local* and free forever.",
+					footer: 'SvelteKit/TS/WASM',
+					thumbnail: '/images/projects/vert.webp',
+					href: 'https://vert.sh',
+					fit: 'cover',
+				},
+				{
 					title: 'femboyfurry.net',
 					description: 'My previous website - more of a joke. Most of my self-hosted projects will be hosted here.',
 					footer: 'Bulma/JS',

@@ -66,6 +66,14 @@
 			href: 'https://github.com/OCSYT/SlimeTora'
 		},
 		{
+			title: 'VERT.sh',
+			description: 'The next-generation file converter. Open source, fully local* and free forever.',
+			footer: 'SvelteKit/TS/WASM',
+			thumbnail: '/images/projects/vert.webp',
+			href: 'https://vert.sh',
+			fit: 'cover'
+		},
+		{
 			title: 'silence-remover',
 			description: 'A Python script to remove silence from the beginning and end of audio files.',
 			footer: 'Python',
