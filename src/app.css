@@ -6,7 +6,6 @@
 
 @source '../node_modules/@skeletonlabs/skeleton-svelte/dist';
 
-
 @font-face {
 	font-family: 'Quicksand';
 	src: url('/fonts/Quicksand.ttf');
@@ -14,5 +13,5 @@
 }
 
 .btn {
-    @apply border-success-600 border-2;
+	@apply border-success-600 border-2;
 }

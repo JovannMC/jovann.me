@@ -22,17 +22,17 @@
 
 <HorizontalCardWrapper {href}>
 	{#if loading}
-		<div class="flex justify-center items-center thumbnail bg-surface-500 min-w-24"></div>
+		<div class="thumbnail bg-surface-500 flex min-w-24 items-center justify-center"></div>
 	{/if}
 
 	{#if thumbnail}
-		<div class="flex justify-center items-center thumbnail bg-surface-500 min-w-24">
-			<img src={thumbnail} alt={title} class="object-contain w-16 h-16" onerror={() => (loading = false)} />
+		<div class="thumbnail bg-surface-500 flex min-w-24 items-center justify-center">
+			<img src={thumbnail} alt={title} class="h-16 w-16 object-contain" onerror={() => (loading = false)} />
 		</div>
 	{/if}
 
-	<div class="flex flex-col justify-between p-4 flex-grow">
-		<h3 class="text-xl font-bold mb-2">{title}</h3>
+	<div class="flex flex-grow flex-col justify-between p-4">
+		<h3 class="mb-2 text-xl font-bold">{title}</h3>
 		<p class="text-surface-200 mb-2">{description}</p>
 		<p class="text-surface-300 text-sm">{footer}</p>
 	</div>

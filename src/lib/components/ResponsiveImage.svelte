@@ -69,9 +69,7 @@
 			computedHeight = finalHeight;
 			imageLoaded = true;
 
-			console.log(
-				`ResponsiveImage: width=${finalWidth}, height=${finalHeight}, ratio=${finalRatio}`
-			);
+			console.log(`ResponsiveImage: width=${finalWidth}, height=${finalHeight}, ratio=${finalRatio}`);
 		};
 
 		img.src = src;

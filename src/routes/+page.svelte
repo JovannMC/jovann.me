@@ -191,10 +191,10 @@
 </header>
 
 <section class="content">
-	<div class="flex flex-col justify-center items-center" style="min-height: calc(100vh - var(--navbar-height));">
-		<div class="text-center w-10/12 lg:w-1/2">
+	<div class="flex flex-col items-center justify-center" style="min-height: calc(100vh - var(--navbar-height));">
+		<div class="w-10/12 text-center lg:w-1/2">
 			<h1 class="text-4xl font-bold">Hey!</h1>
-			<p class="text-xl mt-2">
+			<p class="mt-2 text-xl">
 				I'm <b>JovannMC</b>. I'm just another person that <span class="font-bold" id="typewriter"></span>.
 				<!-- No JS -->
 				<noscript
@@ -206,7 +206,7 @@
 	</div>
 
 	<div class="scroll-indicator">
-		<svg class="w-7 h-7 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+		<svg class="h-7 w-7 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 			<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
 		</svg>
 	</div>
@@ -216,19 +216,19 @@
 
 <!-- About me Section -->
 <Container title="A little about me!">
-	<p class="text-xl text-center">
+	<p class="text-center text-xl">
 		I'm a 16 year old from the Philippines that grew up with technology, gaming, and the internet at a young age. I love
 		learning new things, starting projects I never finish, and hanging out with friends (especially in VR)! I do content
 		creation, program stuff, and self-host random services on my "funny" project domain. Some of my "skills" are below!
 	</p>
-	<div class="flex flex-col lg:flex-row items-center justify-center lg:gap-16">
+	<div class="flex flex-col items-center justify-center lg:flex-row lg:gap-16">
 		<ResponsiveImage src="/images/jovann_hi.webp" width="22.25rem" aspectRatio="1:1" transparent={true} />
-		<div class="mt-6 lg:mt-0 text-center lg:text-left">
-			<ul class="flex flex-col list-disc list-inside text-xl gap-y-3">
+		<div class="mt-6 text-center lg:mt-0 lg:text-left">
+			<ul class="flex list-inside list-disc flex-col gap-y-3 text-xl">
 				<li>16 years of life (via Earth)</li>
 				<li>1 year of content creation (video editing + thumbnails)</li>
 				<li>1 year of self-hosting services</li>
-				<span class="text-center lg:text-left font-bold">and</span>
+				<span class="text-center font-bold lg:text-left">and</span>
 				<li>4 years of Java (via SpigotMC)</li>
 				<li>3 years of C# (via Unity)</li>
 				<li>2 years of JS/TS (via multiple projects)</li>
@@ -278,24 +278,24 @@
 
 <!-- Contact section -->
 <Container title="Contact">
-	<p class="text-xl text-center justify-center">
+	<p class="justify-center text-center text-xl">
 		That's some of my stuff - did you like my work? Want to contact me? Maybe to sponsor me or give me free stuff? (I
 		wish)<br />
 		Head over to the contact page to see all the (hundred) platforms you could use to contact me!
 	</p>
-	<div class="flex flex-col lg:flex-row items-center justify-center content-center lg:gap-16">
+	<div class="flex flex-col content-center items-center justify-center lg:flex-row lg:gap-16">
 		<ResponsiveImage src="/images/jovann_pout.webp" width="20.75rem" aspectRatio="1:1" transparent={true} />
-		<div class="mt-6 lg:mt-0 text-center lg:text-left">
+		<div class="mt-6 text-center lg:mt-0 lg:text-left">
 			<div class="flex flex-col text-xl">
-				<span class="text-center lg:text-left font-bold mt-0 mb-2">You could contact to:</span>
-				<ul class="flex flex-col gap-y-2 list-disc list-inside">
+				<span class="mt-0 mb-2 text-center font-bold lg:text-left">You could contact to:</span>
+				<ul class="flex list-inside list-disc flex-col gap-y-2">
 					<li>get to know me and become friends :D</li>
 					<li>report issues/ask for help on something I have</li>
 					<li>suggest ideas for my next projects</li>
 					<li>give me free stuff and support me! (pls ty)</li>
 				</ul>
-				<span class="text-center lg:text-left font-bold mt-8 mb-2">You can't contact to:</span>
-				<ul class="flex flex-col gap-y-2 list-disc list-inside">
+				<span class="mt-8 mb-2 text-center font-bold lg:text-left">You can't contact to:</span>
+				<ul class="flex list-inside list-disc flex-col gap-y-2">
 					<li>buy your (or give you) stuff; you'd be surprised</li>
 					<li>get mad at me for who I am; tough luck</li>
 				</ul>

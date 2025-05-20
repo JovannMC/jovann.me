@@ -3,11 +3,16 @@
 </script>
 
 {#if href}
-	<a class="horizontal-card hoverable bg-surface-900 rounded-lg shadow-md overflow-hidden flex" {href} rel="me" target="_blank">
+	<a
+		class="horizontal-card hoverable bg-surface-900 flex overflow-hidden rounded-lg shadow-md"
+		{href}
+		rel="me"
+		target="_blank"
+	>
 		{@render children?.()}
 	</a>
 {:else}
-	<div class="horizontal-card bg-surface-900 rounded-lg shadow-md overflow-hidden flex">
+	<div class="horizontal-card bg-surface-900 flex overflow-hidden rounded-lg shadow-md">
 		{@render children?.()}
 	</div>
 {/if}

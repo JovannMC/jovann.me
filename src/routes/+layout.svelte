@@ -64,52 +64,52 @@
 </svelte:head>
 
 <div class="main">
-    <header class="fixed top-0 left-0 right-0 z-50 bg-surface-900 shadow-lg">
-        <!-- App Bar -->
-        <AppBar>
-            {#snippet lead()}
-                <!-- Hamburger menu -->
-                <button class="md:hidden mr-4 cursor-pointer h-8 w-8" on:click={toggleMenu} aria-label="Navigation bar menu">
-                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                    </svg>
-                </button>
-                <!-- Wordmark -->
-                <a href="/"><img class="h-9" src="/images/jovannmc_white_wordmark.png" alt="JovannMC wordmark logo" /></a>
-            {/snippet}
-            {#snippet trail()}
-                <div class="hidden md:flex gap-8 items-center">
-                    <a href="/" id="home"> Home </a>
-                    <a href="/videos" id="videos"> Videos </a>
-                    <a href="/contact" id="contact"> Contact </a>
-                    <a class="btn rounded-full text-sm" href="/projects" id="projects"> Projects </a>
-                </div>
-            {/snippet}
-        </AppBar>
-    </header>
+	<header class="bg-surface-900 fixed top-0 right-0 left-0 z-50 shadow-lg">
+		<!-- App Bar -->
+		<AppBar>
+			{#snippet lead()}
+				<!-- Hamburger menu -->
+				<button class="mr-4 h-8 w-8 cursor-pointer md:hidden" on:click={toggleMenu} aria-label="Navigation bar menu">
+					<svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+					</svg>
+				</button>
+				<!-- Wordmark -->
+				<a href="/"><img class="h-9" src="/images/jovannmc_white_wordmark.png" alt="JovannMC wordmark logo" /></a>
+			{/snippet}
+			{#snippet trail()}
+				<div class="hidden items-center gap-8 md:flex">
+					<a href="/" id="home"> Home </a>
+					<a href="/videos" id="videos"> Videos </a>
+					<a href="/contact" id="contact"> Contact </a>
+					<a class="btn rounded-full text-sm" href="/projects" id="projects"> Projects </a>
+				</div>
+			{/snippet}
+		</AppBar>
+	</header>
 
-    <!-- Hamburger menu contents -->
-    <div class="md:hidden" class:open={menuOpen}>
-        {#if menuOpen}
-            <div transition:slide={{ duration: 300 }} class="absolute left-0 w-full z-50">
-                <div class="flex flex-col gap-1 justify-center items-center bg-surface-900 shadow-lg px-4 py-2">
-                    <a href="/" class="w-full text-center block py-2" id="home"> Home </a>
-                    <a href="/videos" class="w-full text-center block py-2" id="videos"> Videos </a>
-                    <a href="/contact" class="w-full text-center block py-2" id="contact"> Contact </a>
-                    <a href="/projects" class="btn w-full text-center block rounded-full py-2 mb-2" id="projects"> Projects </a>
-                </div>
-            </div>
-        {/if}
-    </div>
+	<!-- Hamburger menu contents -->
+	<div class="md:hidden" class:open={menuOpen}>
+		{#if menuOpen}
+			<div transition:slide={{ duration: 300 }} class="absolute left-0 z-50 w-full">
+				<div class="bg-surface-900 flex flex-col items-center justify-center gap-1 px-4 py-2 shadow-lg">
+					<a href="/" class="block w-full py-2 text-center" id="home"> Home </a>
+					<a href="/videos" class="block w-full py-2 text-center" id="videos"> Videos </a>
+					<a href="/contact" class="block w-full py-2 text-center" id="contact"> Contact </a>
+					<a href="/projects" class="btn mb-2 block w-full rounded-full py-2 text-center" id="projects"> Projects </a>
+				</div>
+			</div>
+		{/if}
+	</div>
 
-    <main id="page" class="container mx-auto mt-[var(--navbar-height)]">
-        <!-- Main content -->
-        <slot />
-    </main>
+	<main id="page" class="container mx-auto mt-[var(--navbar-height)]">
+		<!-- Main content -->
+		<slot />
+	</main>
 
-    <footer>
-        <Footer />
-    </footer>
+	<footer>
+		<Footer />
+	</footer>
 </div>
 
 <style>

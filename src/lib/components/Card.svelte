@@ -24,7 +24,7 @@
 	}: Props = $props();
 </script>
 
-<CardWrapper href={href}>
+<CardWrapper {href}>
 	{#if loading}
 		<header>
 			<div class="bg-surface-500 h-64"></div>
@@ -54,11 +54,22 @@
 	{/if}
 
 	<div class="flex flex-col p-4">
-		<h3 class="text-xl font-bold mb-4">{title}</h3>
+		<h3 class="mb-4 text-xl font-bold">{title}</h3>
 		<p class="text-surface-200 text-wrap">{description}</p>
 	</div>
 
 	<footer class="card-footer">
-		<p class="text-sm text-surface-300">{footer}</p>
+		<p class="text-surface-300 text-sm">{footer}</p>
 	</footer>
 </CardWrapper>
+
+<style>
+	@reference "../../app.css";
+	.card-footer {
+		@apply pb-4 pl-4;
+	}
+
+	.card-footer p {
+		margin: 0;
+	}
+</style>
