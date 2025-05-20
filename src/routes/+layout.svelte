@@ -64,7 +64,7 @@
 </svelte:head>
 
 <div class="main">
-    <header>
+    <header class="fixed top-0 left-0 right-0 z-50 bg-surface-900 shadow-lg">
         <!-- App Bar -->
         <AppBar>
             {#snippet lead()}
@@ -82,7 +82,7 @@
                     <a href="/" id="home"> Home </a>
                     <a href="/videos" id="videos"> Videos </a>
                     <a href="/contact" id="contact"> Contact </a>
-                    <a class="btn btn-sm preset-tonal-surface border border-surface-500" href="/projects" id="projects"> Projects </a>
+                    <a class="btn rounded-full text-sm" href="/projects" id="projects"> Projects </a>
                 </div>
             {/snippet}
         </AppBar>
@@ -96,13 +96,13 @@
                     <a href="/" class="w-full text-center block py-2" id="home"> Home </a>
                     <a href="/videos" class="w-full text-center block py-2" id="videos"> Videos </a>
                     <a href="/contact" class="w-full text-center block py-2" id="contact"> Contact </a>
-                    <a href="/projects" class="btn w-full text-center block py-2 mb-2" id="projects"> Projects </a>
+                    <a href="/projects" class="btn w-full text-center block rounded-full py-2 mb-2" id="projects"> Projects </a>
                 </div>
             </div>
         {/if}
     </div>
 
-    <main id="page" class="container mx-auto">
+    <main id="page" class="container mx-auto mt-[var(--navbar-height)]">
         <!-- Main content -->
         <slot />
     </main>

@@ -18,7 +18,7 @@
 	let secondRowLinks = socialLinks.slice(Math.ceil(socialLinks.length / 2));
 </script>
 
-<footer class="bg-surface-800 text-white py-4">
+<footer class="bg-surface-900 text-white py-4">
 	<div class="container mx-auto px-4">
 		<div class="flex flex-col lg:flex-row justify-around items-center space-y-4 lg:space-y-0">
 			<!-- Logo and message -->

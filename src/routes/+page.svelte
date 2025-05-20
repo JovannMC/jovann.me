@@ -222,7 +222,7 @@
 		creation, program stuff, and self-host random services on my "funny" project domain. Some of my "skills" are below!
 	</p>
 	<div class="flex flex-col lg:flex-row items-center justify-center lg:gap-16">
-		<ResponsiveImage src="/images/jovann_hi.webp" width="20rem" aspectRatio="1:1" transparent={true} />
+		<ResponsiveImage src="/images/jovann_hi.webp" width="22.25rem" aspectRatio="1:1" transparent={true} />
 		<div class="mt-6 lg:mt-0 text-center lg:text-left">
 			<ul class="flex flex-col list-disc list-inside text-xl gap-y-3">
 				<li>16 years of life (via Earth)</li>
@@ -247,8 +247,8 @@
 					title={project.title}
 					description={project.description}
 					footer={project.footer}
-					thumbnail={project.thumbnail}
-					href={project.href}
+					thumbnail={project.thumbnail ?? ''}
+					href={project.href ?? ''}
 					fit={project.fit}
 					fitPadding={project.fitPadding}
 				/>
@@ -284,7 +284,7 @@
 		Head over to the contact page to see all the (hundred) platforms you could use to contact me!
 	</p>
 	<div class="flex flex-col lg:flex-row items-center justify-center content-center lg:gap-16">
-		<ResponsiveImage src="/images/jovann_pout.webp" width="20rem" aspectRatio="1:1" transparent={true} />
+		<ResponsiveImage src="/images/jovann_pout.webp" width="20.75rem" aspectRatio="1:1" transparent={true} />
 		<div class="mt-6 lg:mt-0 text-center lg:text-left">
 			<div class="flex flex-col text-xl">
 				<span class="text-center lg:text-left font-bold mt-0 mb-2">You could contact to:</span>

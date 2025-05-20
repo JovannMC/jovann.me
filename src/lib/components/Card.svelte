@@ -55,10 +55,10 @@
 
 	<div class="flex flex-col p-4">
 		<h3 class="text-xl font-bold mb-4">{title}</h3>
-		<p class="text-surface-300 text-wrap">{description}</p>
+		<p class="text-surface-200 text-wrap">{description}</p>
 	</div>
 
 	<footer class="card-footer">
-		<p class="text-sm text-surface-400">{footer}</p>
+		<p class="text-sm text-surface-300">{footer}</p>
 	</footer>
 </CardWrapper>

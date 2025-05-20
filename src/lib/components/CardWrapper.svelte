@@ -4,12 +4,12 @@
 
 {#if href}
 	<a {href} rel="me" target="_blank">
-		<div class="card hoverable bg-surface-800 rounded-lg shadow-md overflow-hidden">
+		<div class="card hoverable bg-surface-900 rounded-lg shadow-md overflow-hidden">
 			{@render children?.()}
 		</div>
 	</a>
 {:else}
-	<div class="card bg-surface-800 rounded-lg shadow-md overflow-hidden">
+	<div class="card bg-surface-900 rounded-lg shadow-md overflow-hidden">
 		{@render children?.()}
 	</div>
 {/if}

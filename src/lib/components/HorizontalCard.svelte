@@ -33,7 +33,7 @@
 
 	<div class="flex flex-col justify-between p-4 flex-grow">
 		<h3 class="text-xl font-bold mb-2">{title}</h3>
-		<p class="text-surface-300 mb-2">{description}</p>
-		<p class="text-surface-400 text-sm">{footer}</p>
+		<p class="text-surface-200 mb-2">{description}</p>
+		<p class="text-surface-300 text-sm">{footer}</p>
 	</div>
 </HorizontalCardWrapper>
