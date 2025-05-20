@@ -1,6 +1,11 @@
-<script>
-	export let title = '';
-	export let id = '';
+<script lang="ts">
+	interface Props {
+		title?: string;
+		id?: string;
+		children?: import('svelte').Snippet;
+	}
+
+	let { title = '', id = '', children }: Props = $props();
 </script>
 
 <div class="container mx-auto flex flex-col items-center py-8" {id}>
@@ -8,6 +13,6 @@
 		{#if title}
 			<h2 class="text-3xl md:text-4xl font-bold text-center">{title}</h2>
 		{/if}
-		<slot></slot>
+		{@render children?.()}
 	</div>
 </div>

@@ -1,7 +1,11 @@
-<script>
-	export let text = '';
-	export let additionalClasses = '';
-	export let href = '';
+<script lang="ts">
+	interface Props {
+		text?: string;
+		additionalClasses?: string;
+		href?: string;
+	}
+
+	let { text = '', additionalClasses = '', href = '' }: Props = $props();
 </script>
 
 <div class="mt-8 text-center">

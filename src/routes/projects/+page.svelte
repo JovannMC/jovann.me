@@ -72,7 +72,8 @@
 				},
 				{
 					title: 'haritorax-interpreter',
-					description: 'A node.js package that allows you to communicate with the HaritoraX FBT trackers.',
+					description:
+						'A node.js package that allows you to communicate with the HaritoraX FBT trackers.',
 					footer: 'NodeJS/TS',
 					thumbnail: '/images/projects/haritorax-interpreter.png',
 					href: 'https://github.com/JovannMC/haritorax-interpreter',
@@ -81,7 +82,8 @@
 				},
 				{
 					title: 'silence-remover',
-					description: 'A Python script to remove silence from the beginning and end of audio files.',
+					description:
+						'A Python script to remove silence from the beginning and end of audio files.',
 					footer: 'Python',
 					href: 'https://github.com/JovannMC/silence-remover',
 					fit: 'contain',
@@ -89,7 +91,8 @@
 				},
 				{
 					title: 'haritora-gx-poc',
-					description: 'A proof-of-concept app that interprets the GX(6/2) dongle data for the HaritoraX Wireless.',
+					description:
+						'A proof-of-concept app that interprets the GX(6/2) dongle data for the HaritoraX Wireless.',
 					footer: 'Python',
 					thumbnail: '/images/projects/haritora-gx-poc.png',
 					href: 'https://github.com/JovannMC/haritora-gx-poc',
@@ -118,24 +121,27 @@
 					fitPadding: 'p-12'
 				},
 				{
-					title: "VERT.sh",
-					description: "The next-generation file converter. Open source, fully local* and free forever.",
+					title: 'VERT.sh',
+					description:
+						'The next-generation file converter. Open source, fully local* and free forever.',
 					footer: 'SvelteKit/TS/WASM',
 					thumbnail: '/images/projects/vert.webp',
 					href: 'https://vert.sh',
-					fit: 'cover',
+					fit: 'cover'
 				},
 				{
 					title: 'femboyfurry.net',
-					description: 'My previous website - more of a joke. Most of my self-hosted projects will be hosted here.',
+					description:
+						'My previous website - more of a joke. Most of my self-hosted projects will be hosted here.',
 					footer: 'Bulma/JS',
 					thumbnail: '/images/projects/femboyfurry-net.webp',
 					href: 'https://femboyfurry.net',
-					fit: 'cover',
+					fit: 'cover'
 				},
 				{
 					title: 'TheSauceSage',
-					description: 'A website for the content creator, TheSauceSage, and their SMP. A free commission.',
+					description:
+						'A website for the content creator, TheSauceSage, and their SMP. A free commission.',
 					footer: 'Vanilla/JS',
 					thumbnail: '/images/projects/thesaucesage.webp',
 					href: 'https://thesaucesage.com/',
@@ -144,7 +150,8 @@
 				},
 				{
 					title: "Sky's portfolio",
-					description: 'A small portfolio for Sky for their art and commissions. A free commission.',
+					description:
+						'A small portfolio for Sky for their art and commissions. A free commission.',
 					footer: 'Vanilla/JS',
 					thumbnail: '/images/projects/sky_pfp.webp',
 					href: 'https://sky.femboyfurry.net',
@@ -177,7 +184,8 @@
 				},
 				{
 					title: 'ArcherySMP',
-					description: 'A plugin for the ArcherySMP server to add archers and hunters. A free commission.',
+					description:
+						'A plugin for the ArcherySMP server to add archers and hunters. A free commission.',
 					footer: 'Spigot/Java',
 					thumbnail: '/images/socials/spigotmc.webp',
 					fit: 'contain',
@@ -217,7 +225,8 @@
 				},
 				{
 					title: 'Salad Clicker',
-					description: 'A (bad) clicker game.. also based off the program that earns you money, Salad.',
+					description:
+						'A (bad) clicker game.. also based off the program that earns you money, Salad.',
 					footer: 'Unity/C#',
 					thumbnail: '/images/projects/salad-clicker.webp',
 					href: 'https://github.com/JovannMC/salad-clicker',
@@ -241,9 +250,9 @@
 </header>
 
 <Container title="My projects!">
-	<p class="text-xl text-center justify-center">
-		Here are some of the projects I've worked on ranging from programs and websites, to games and Minecraft plugins!<br
-		/>
+	<p class="justify-center text-center text-xl">
+		Here are some of the projects I've worked on ranging from programs and websites, to games and
+		Minecraft plugins!<br />
 		<br />
 		Click on any of the project cards to visit and learn more about them.
 	</p>
@@ -258,8 +267,8 @@
 						title={project.title}
 						description={project.description}
 						footer={project.footer}
-						thumbnail={project.thumbnail}
-						href={project.href}
+						thumbnail={project.thumbnail ?? ''}
+						href={project.href ?? ''}
 						fit={project.fit}
 						fitPadding={project.fitPadding}
 					/>

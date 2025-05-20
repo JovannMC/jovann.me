@@ -1,14 +1,27 @@
 <script lang="ts">
 	import CardWrapper from './CardWrapper.svelte';
 
-	export let title = '';
-	export let description = '';
-	export let footer = '';
-	export let thumbnail = '';
-	export let href = '';
-	export let fit = 'cover';
-	export let fitPadding = 'p-12';
-	export let loading = false;
+	interface Props {
+		title: string;
+		description: string;
+		footer?: string;
+		thumbnail: string;
+		href: string;
+		fit?: string;
+		fitPadding?: string;
+		loading?: boolean;
+	}
+
+	let {
+		title = '',
+		description = '',
+		footer = '',
+		thumbnail = '',
+		href = '',
+		fit = 'cover',
+		fitPadding = 'p-12',
+		loading = $bindable(false)
+	}: Props = $props();
 </script>
 
 <CardWrapper href={href}>
@@ -25,7 +38,7 @@
 				alt={title}
 				style="object-fit: {fit};"
 				class="h-64 w-full {fit === 'contain' ? `${fitPadding} bg-surface-500` : ''}"
-				on:error={() => (loading = true)}
+				onerror={() => (loading = true)}
 			/>
 		</header>
 	{:else}
@@ -35,7 +48,7 @@
 				alt={title}
 				style="object-fit: contain;"
 				class="h-64 w-full {fitPadding} bg-surface-500"
-				on:error={() => (loading = true)}
+				onerror={() => (loading = true)}
 			/>
 		</header>
 	{/if}

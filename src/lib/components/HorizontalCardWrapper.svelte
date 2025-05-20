@@ -1,14 +1,14 @@
-<script>
-	export let href;
+<script lang="ts">
+	let { href, children } = $props();
 </script>
 
 {#if href}
 	<a class="horizontal-card hoverable bg-surface-800 rounded-lg shadow-md overflow-hidden flex" {href} rel="me" target="_blank">
-		<slot></slot>
+		{@render children?.()}
 	</a>
 {:else}
 	<div class="horizontal-card bg-surface-800 rounded-lg shadow-md overflow-hidden flex">
-		<slot></slot>
+		{@render children?.()}
 	</div>
 {/if}
 

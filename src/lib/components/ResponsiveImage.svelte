@@ -1,60 +1,81 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 
-	export let src = '';
-
-	// Width and height take rem units
-	export let width = '';
-	export let height = '';
-	export let aspectRatio = '';
-
-	export let transparent = false;
-	export let loading = false;
-	export let hoverEffect = false;
-
-	let defaultAspectRatioValue = 0;
-	let element: Element;
-
-	// If aspect ratio is not provided, load image and calculate aspect ratio
-	onMount(() => {
-		const img = new Image();
-		img.onload = () => {
-			defaultAspectRatioValue = img.naturalWidth / img.naturalHeight;
-			if (aspectRatio === '') aspectRatio = `${img.naturalWidth}:${img.naturalHeight}`;
-		};
-		img.src = src;
-
-		// If no width and height specified, take the parent's size
-		if (width === '' && height === '') {
-			const parent = element.parentNode as HTMLElement;
-			if (parent !== null) {
-				width = `${parent.offsetWidth}px`;
-				height = `${parent.offsetHeight}px`;
-			}
-		}
-	});
-
-	// Calculate padding top for aspect ratio box
-	$: numeratorDenominator = aspectRatio.split(':').map(Number);
-	$: aspectRatioValue =
-		numeratorDenominator.length === 2 ? numeratorDenominator[0] / numeratorDenominator[1] : defaultAspectRatioValue;
-	$: paddingTop = 100 / aspectRatioValue;
-
-	// Calculate dimensions based on aspect ratio if one is provided without the other
-	$: {
-		if (width !== '' && height === '') {
-			const widthValue = parseFloat(width);
-			height = `${widthValue / aspectRatioValue}rem`;
-		} else if (height !== '' && width === '') {
-			const heightValue = parseFloat(height);
-			width = `${heightValue * aspectRatioValue}rem`;
-		}
+	interface Props {
+		src: string;
+		// Width and height take rem units
+		width?: string;
+		height?: string;
+		aspectRatio?: string;
+		transparent?: boolean;
+		loading?: boolean;
+		hoverEffect?: boolean;
 	}
 
-	// Compute final width and height
-	$: defaultSize = 10;
-	$: computedWidth = width.trim() !== '' ? width : `${defaultSize}rem`;
-	$: computedHeight = height.trim() !== '' ? height : `${defaultSize / aspectRatioValue}rem`;
+	let {
+		src = '',
+		width = $bindable(''),
+		height = $bindable(''),
+		aspectRatio = $bindable(''),
+		transparent = false,
+		loading = false,
+		hoverEffect = false
+	}: Props = $props();
+
+	// Simplified state variables
+	let element: Element | undefined = $state();
+	let computedWidth = $state('');
+	let computedHeight = $state('');
+	let paddingTop = $state(100); // 1:1
+	let imageLoaded = $state(false);
+
+	onMount(() => {
+		const img = new Image();
+
+		img.onload = () => {
+			const naturalRatio = img.naturalWidth / img.naturalHeight;
+
+			let finalRatio = naturalRatio;
+			if (aspectRatio) {
+				const [width, height] = aspectRatio.split(':').map(Number);
+				if (width && height) finalRatio = width / height;
+			}
+
+			paddingTop = 100 / finalRatio;
+
+			let containerWidth = '';
+			let containerHeight = '';
+			if (width === '' && height === '' && element) {
+				const parent = element.parentNode as HTMLElement;
+				if (parent) {
+					containerWidth = `${parent.offsetWidth}px`;
+					containerHeight = `${parent.offsetHeight}px`;
+				}
+			}
+
+			let finalWidth = width || containerWidth || '10rem'; // default size
+			let finalHeight = height || containerHeight || '';
+
+			// if only one dimension is provided, calculate the other based on aspect ratio
+			if (finalWidth && !finalHeight) {
+				const widthValue = parseFloat(finalWidth);
+				finalHeight = `${widthValue / finalRatio}rem`;
+			} else if (!finalWidth && finalHeight) {
+				const heightValue = parseFloat(finalHeight);
+				finalWidth = `${heightValue * finalRatio}rem`;
+			}
+
+			computedWidth = finalWidth;
+			computedHeight = finalHeight;
+			imageLoaded = true;
+
+			console.log(
+				`ResponsiveImage: width=${finalWidth}, height=${finalHeight}, ratio=${finalRatio}`
+			);
+		};
+
+		img.src = src;
+	});
 </script>
 
 <div

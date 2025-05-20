@@ -1,12 +1,23 @@
-<script>
+<script lang="ts">
 	import HorizontalCardWrapper from './HorizontalCardWrapper.svelte';
 
-	export let title = '';
-	export let description = '';
-	export let footer = '';
-	export let thumbnail = '';
-	export let href = '';
-	export let loading = false;
+	interface Props {
+		title: string;
+		description: string;
+		footer?: string;
+		thumbnail: string;
+		href: string;
+		loading?: boolean;
+	}
+
+	let {
+		title = '',
+		description = '',
+		footer = '',
+		thumbnail = '',
+		href = '',
+		loading = $bindable(false)
+	}: Props = $props();
 </script>
 
 <HorizontalCardWrapper {href}>
@@ -16,7 +27,7 @@
 
 	{#if thumbnail}
 		<div class="flex justify-center items-center thumbnail bg-surface-500 min-w-24">
-			<img src={thumbnail} alt={title} class="object-contain w-16 h-16" on:error={() => (loading = false)} />
+			<img src={thumbnail} alt={title} class="object-contain w-16 h-16" onerror={() => (loading = false)} />
 		</div>
 	{/if}
 
