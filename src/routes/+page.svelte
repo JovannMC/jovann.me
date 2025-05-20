@@ -125,6 +125,13 @@
 
 	const videos = [
 		{
+			title: "i'm back again.. with a 24 hour stream!",
+			description: "surprise! i'm back again, returning with a 24+ hour live stream challenge!",
+			footer: 'April 4, 2025',
+			thumbnail: '/images/videos/24_hour_stream.webp',
+			href: 'https://www.youtube.com/watch?v=t8WeSwSCzZ0'
+		},
+		{
 			title: 'finding insecure vnc sessions w/ VNC Resolver',
 			description: "I take a look at ComputerNewb's VNC Resolver project and find.. concerning VNC sessions.",
 			footer: 'May 23, 2024',
@@ -192,13 +199,14 @@
 
 <section class="content">
 	<div class="flex flex-col items-center justify-center" style="min-height: calc(100vh - var(--navbar-height));">
-		<div class="w-10/12 text-center lg:w-1/2">
+		<div class="w-9/12 text-center lg:w-1/3">
 			<h1 class="text-4xl font-bold">Hey!</h1>
 			<p class="mt-2 text-xl">
-				I'm <b>JovannMC</b>. I'm just another person that <span class="font-bold" id="typewriter"></span>.
+				I'm <b>Maya</b>, better known online as <b>JovannMC</b>. I'm just another person that
+				<span class="font-bold" id="typewriter"></span>.
 				<!-- No JS -->
 				<noscript
-					><del>hates</del> loves <b>technology</b>, creates <b>content</b>, and sucks at
+					><del>hates</del> loves <b>technology</b>, creates <b>content</b>, hangs out with friends, and sucks at
 					<b>programming</b>.</noscript
 				>
 			</p>
@@ -217,22 +225,25 @@
 <!-- About me Section -->
 <Container title="A little about me!">
 	<p class="text-center text-xl">
-		I'm a 16 year old from the Philippines that grew up with technology, gaming, and the internet at a young age. I love
-		learning new things, starting projects I never finish, and hanging out with friends (especially in VR)! I do content
-		creation, program stuff, and self-host random services on my "funny" project domain. Some of my "skills" are below!
+		I'm a 16 year old from the Philippines (living abroad) that grew up with technology, gaming, and the internet at a
+		young age. I love learning new things, starting projects I never finish, and hanging out with friends (especially in
+		VR)!<br />
+		<br />
+		I do content creation, try to program stuff, and self-host random services on my "funny" project domain with a.. free VPS from Oracle. I also have
+		way too many VR full body trackers. Here are some of the "skills" I have:
 	</p>
 	<div class="flex flex-col items-center justify-center lg:flex-row lg:gap-16">
 		<ResponsiveImage src="/images/jovann_hi.webp" width="22.25rem" aspectRatio="1:1" transparent={true} />
 		<div class="mt-6 text-center lg:mt-0 lg:text-left">
 			<ul class="flex list-inside list-disc flex-col gap-y-3 text-xl">
 				<li>16 years of life (via Earth)</li>
-				<li>1 year of content creation (video editing + thumbnails)</li>
-				<li>1 year of self-hosting services</li>
+				<li>3 years of content creation (video editing + bad thumbnails)</li>
+				<li>2 years of self-hosting services</li>
 				<span class="text-center font-bold lg:text-left">and</span>
 				<li>4 years of Java (via SpigotMC)</li>
 				<li>3 years of C# (via Unity)</li>
 				<li>2 years of JS/TS (via multiple projects)</li>
-				<li>1 year of web development</li>
+				<li>2 years of web development (svelte my beloved)</li>
 			</ul>
 		</div>
 	</div>

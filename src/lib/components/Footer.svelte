@@ -59,7 +59,7 @@
 					<h3 class="mb-2 font-bold">Cool links</h3>
 					<ul class="flex flex-row justify-center gap-6 lg:flex-col lg:gap-1">
 						<li>
-							<a href="https://litdevs.org/" class="hover:underline" target="_blank">LIT Devs</a>
+							<a href="https://vert.sh" class="hover:underline" target="_blank">VERT.sh</a>
 						</li>
 						<li>
 							<a href="https://github.com/OCSYT/SlimeTora" class="hover:underline" target="_blank">SlimeTora</a>
@@ -67,6 +67,7 @@
 						<li>
 							<a href="https://github.com/SlimeVR/" class="hover:underline" target="_blank">SlimeVR</a>
 						</li>
+						
 					</ul>
 				</div>
 			</div>

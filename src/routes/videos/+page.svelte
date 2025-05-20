@@ -8,5 +8,5 @@
 
 <Container title="Under construction">
 	<p class="mb-6 text-center text-xl">🚧 This page is under construction 🚧</p>
-	<p class="text-center">Please check back later!</p>
+	<p class="text-center">Please check back late- wait this has been under construction for more than a year.</p>
 </Container>
