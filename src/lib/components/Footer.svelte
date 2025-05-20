@@ -70,7 +70,7 @@
 		</div>
 
 		<div class="mt-4 flex justify-between items-center border-t pt-4 border-gray-700 text-xs lg:text-base">
-			<p class="lg:w-auto w-2/4 text-left">© 2024 JovannMC. All rights reserved. All wrongs not reserved.</p>
+			<p class="lg:w-auto w-2/4 text-left">© 2025 JovannMC. All rights reserved. All wrongs not reserved.</p>
 			<p class="lg:w-auto w-3/4 text-right">
 				This site is under <br class="lg:hidden" />the
 				<a href="https://opensource.org/license/MIT" class="text-blue-400">MIT License</a>.
