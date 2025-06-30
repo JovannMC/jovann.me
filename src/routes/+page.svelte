@@ -193,9 +193,9 @@
 	];
 </script>
 
-<header>
+<svelte:head>
 	<title>jovann.me</title>
-</header>
+</svelte:head>
 
 <section class="content">
 	<div class="flex flex-col items-center justify-center" style="min-height: calc(100vh - var(--navbar-height));">

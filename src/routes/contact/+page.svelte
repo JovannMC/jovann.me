@@ -105,9 +105,9 @@
 	];
 </script>
 
-<header>
+<svelte:head>
 	<title>Contact me!</title>
-</header>
+</svelte:head>
 
 <Container title="Contact me!">
 	<p class="justify-center text-center text-xl">

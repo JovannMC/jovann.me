@@ -236,9 +236,9 @@
 	];
 </script>
 
-<header>
+<svelte:head>
 	<title>My projects!</title>
-</header>
+</svelte:head>
 
 <Container title="My projects!">
 	<p class="justify-center text-center text-xl">

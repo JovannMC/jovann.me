@@ -2,9 +2,9 @@
 	import Container from '$lib/components/Container.svelte';
 </script>
 
-<header>
+<svelte:head>
 	<title>Under construction!</title>
-</header>
+</svelte:head>
 
 <Container title="Under construction">
 	<p class="mb-6 text-center text-xl">🚧 This page is under construction 🚧</p>
