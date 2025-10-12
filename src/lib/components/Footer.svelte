@@ -1,6 +1,6 @@
 <script lang="ts">
 	const socialLinks = [
-		{ name: 'Email', src: '/images/socials/email.svg', href: 'mailto:contact@femboyfurry.net' },
+		{ name: 'Email', src: '/images/socials/email.svg', href: 'mailto:hello@jovann.me' },
 		{
 			name: 'Discord',
 			src: '/images/socials/discord.svg',

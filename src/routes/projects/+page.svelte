@@ -27,37 +27,37 @@
 	} as Options;
 
 	let projectCategories = [
-		{
-			category: 'Self-hosted Projects',
-			projects: [
-				{
-					title: 'Silly Creative Collective',
-					description: 'Soon to host many projects and services, SCC is ran by a group of friends!',
-					footer: 'In development',
-					thumbnail: '/images/projects/scc_logo.webp',
-					fit: 'contain',
-					fitPadding: 'p-12'
-				},
-				{
-					title: 'Mastodon',
-					description: 'The Mastodon instance with the funny domain - @username@femboyfurry.net',
-					footer: 'Active',
-					thumbnail: '/images/socials/mastodon.svg',
-					href: 'https://mastodon.femboyfurry.net',
-					fit: 'contain',
-					fitPadding: 'p-12'
-				},
-				{
-					title: 'FurryFlix',
-					description: 'Yet another PeerTube instance with the funny domain - vid.femboyfurry.net',
-					footer: 'Active',
-					thumbnail: '/images/socials/peertube.svg',
-					href: 'https://vid.femboyfurry.net',
-					fit: 'contain',
-					fitPadding: 'p-12'
-				}
-			]
-		},
+		// {
+		// 	category: 'Self-hosted Projects',
+		// 	projects: [
+		// 		{
+		// 			title: 'Silly Creative Collective',
+		// 			description: 'Soon to host many projects and services, SCC is ran by a group of friends!',
+		// 			footer: 'In development',
+		// 			thumbnail: '/images/projects/scc_logo.webp',
+		// 			fit: 'contain',
+		// 			fitPadding: 'p-12'
+		// 		}
+		// 		{
+		// 			title: 'Mastodon',
+		// 			description: 'The Mastodon instance with the funny domain - @username@femboyfurry.net',
+		// 			footer: 'Active',
+		// 			thumbnail: '/images/socials/mastodon.svg',
+		// 			href: 'https://mastodon.femboyfurry.net',
+		// 			fit: 'contain',
+		// 			fitPadding: 'p-12'
+		// 		},
+		// 		{
+		// 			title: 'FurryFlix',
+		// 			description: 'Yet another PeerTube instance with the funny domain - vid.femboyfurry.net',
+		// 			footer: 'Active',
+		// 			thumbnail: '/images/socials/peertube.svg',
+		// 			href: 'https://vid.femboyfurry.net',
+		// 			fit: 'contain',
+		// 			fitPadding: 'p-12'
+		// 		}
+		// 	]
+		// },
 		{
 			category: 'Software Development',
 			projects: [
@@ -118,6 +118,14 @@
 					fitPadding: 'p-12'
 				},
 				{
+					title: 'SlimeVR Team Page',
+					description: 'Affordable, comfortable, wireless full-body tracking for VR - made the Team page!',
+					footer: 'SolidJS/TS',
+					thumbnail: '/images/projects/slimevr-team.webp',
+					href: 'https://slimevr.dev/team',
+					fit: 'cover'
+				},
+				{
 					title: 'VERT.sh',
 					description: 'The next-generation file converter. Open source, fully local* and free forever.',
 					footer: 'SvelteKit/TS/WASM',
@@ -125,14 +133,14 @@
 					href: 'https://vert.sh',
 					fit: 'cover'
 				},
-				{
-					title: 'femboyfurry.net',
-					description: 'My previous website - more of a joke. Most of my self-hosted projects will be hosted here.',
-					footer: 'Bulma/JS',
-					thumbnail: '/images/projects/femboyfurry-net.webp',
-					href: 'https://femboyfurry.net',
-					fit: 'cover'
-				},
+				// {
+				// 	title: 'femboyfurry.net',
+				// 	description: 'My previous website - more of a joke. Most of my self-hosted projects will be hosted here.',
+				// 	footer: 'Bulma/JS',
+				// 	thumbnail: '/images/projects/femboyfurry-net.webp',
+				// 	href: 'https://femboyfurry.net',
+				// 	fit: 'cover'
+				// },
 				{
 					title: 'TheSauceSage',
 					description: 'A website for the content creator, TheSauceSage, and their SMP. A free commission.',

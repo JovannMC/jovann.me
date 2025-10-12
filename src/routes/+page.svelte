@@ -74,20 +74,28 @@
 			fit: 'cover'
 		},
 		{
+			title: 'SlimeVR Team Page',
+			description: 'Affordable, comfortable, wireless full-body tracking for VR - made the Team page!',
+			footer: 'SolidJS/TS',
+			thumbnail: '/images/projects/slimevr-team.webp',
+			href: 'https://slimevr.dev/team',
+			fit: 'cover'
+		},
+		{
 			title: 'silence-remover',
 			description: 'A Python script to remove silence from the beginning and end of audio files.',
 			footer: 'Python',
 			href: 'https://github.com/JovannMC/silence-remover'
 		},
-		{
-			title: 'Mastodon',
-			description: 'The Mastodon instance with the funny domain - @username@femboyfurry.net',
-			footer: 'Active',
-			thumbnail: '/images/socials/mastodon.svg',
-			href: 'https://mastodon.femboyfurry.net',
-			fit: 'contain',
-			fitPadding: 'p-12'
-		},
+		// {
+		// 	title: 'Mastodon',
+		// 	description: 'The Mastodon instance with the funny domain - @username@femboyfurry.net',
+		// 	footer: 'Active',
+		// 	thumbnail: '/images/socials/mastodon.svg',
+		// 	href: 'https://mastodon.femboyfurry.net',
+		// 	fit: 'contain',
+		// 	fitPadding: 'p-12'
+		// },
 		{
 			title: 'Salad Simulator',
 			description: 'A (bad) game based off the program that earns you money, Salad.',
@@ -104,14 +112,14 @@
 			thumbnail: '/images/projects/scc_logo.webp',
 			fit: 'contain'
 		},
-		{
-			title: 'femboyfurry.net',
-			description: 'My previous website - more of a joke. Most of my self-hosted projects will be hosted here.',
-			footer: 'Bulma/JS',
-			thumbnail: '/images/projects/femboyfurry-net.webp',
-			href: 'https://femboyfurry.net',
-			fit: 'cover'
-		},
+		// {
+		// 	title: 'femboyfurry.net',
+		// 	description: 'My previous website - more of a joke. Most of my self-hosted projects will be hosted here.',
+		// 	footer: 'Bulma/JS',
+		// 	thumbnail: '/images/projects/femboyfurry-net.webp',
+		// 	href: 'https://femboyfurry.net',
+		// 	fit: 'cover'
+		// },
 		{
 			title: 'MentionChat',
 			description: 'A simple plugin to mention other players in chat.',
@@ -229,8 +237,8 @@
 		young age. I love learning new things, starting projects I never finish, and hanging out with friends (especially in
 		VR)!<br />
 		<br />
-		I do content creation, try to program stuff, and self-host random services on my "funny" project domain with a.. free VPS from Oracle. I also have
-		way too many VR full body trackers. Here are some of the "skills" I have:
+		I do content creation, try to program stuff, and self-host random services on my "funny" project domain with a.. free
+		VPS from Oracle. I also have way too many VR full body trackers. Here are some of the "skills" I have:
 	</p>
 	<div class="flex flex-col items-center justify-center lg:flex-row lg:gap-16">
 		<ResponsiveImage src="/images/jovann_hi.webp" width="22.25rem" aspectRatio="1:1" transparent={true} />
