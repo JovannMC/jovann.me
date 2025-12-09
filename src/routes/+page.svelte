@@ -105,13 +105,13 @@
 			fit: 'cover',
 			fitPadding: 'p-12'
 		},
-		{
-			title: 'Silly Creative Collective',
-			description: 'Soon to host many projects and services, SCC is ran by a group of friends!',
-			footer: 'In development',
-			thumbnail: '/images/projects/scc_logo.webp',
-			fit: 'contain'
-		},
+		// {
+		// 	title: 'Silly Creative Collective',
+		// 	description: 'Soon to host many projects and services, SCC is ran by a group of friends!',
+		// 	footer: 'In development',
+		// 	thumbnail: '/images/projects/scc_logo.webp',
+		// 	fit: 'contain'
+		// },
 		// {
 		// 	title: 'femboyfurry.net',
 		// 	description: 'My previous website - more of a joke. Most of my self-hosted projects will be hosted here.',
@@ -233,25 +233,24 @@
 <!-- About me Section -->
 <Container title="A little about me!">
 	<p class="text-center text-xl">
-		I'm a 16 year old from the Philippines (living abroad) that grew up with technology, gaming, and the internet at a
+		I'm a 17 year old from the Philippines (living abroad) that grew up with technology, gaming, and the internet at a
 		young age. I love learning new things, starting projects I never finish, and hanging out with friends (especially in
 		VR)!<br />
 		<br />
 		I do content creation, try to program stuff, and self-host random services on my "funny" project domain with a.. free
-		VPS from Oracle. I also have way too many VR full body trackers. Here are some of the "skills" I have:
+		VPS from Oracle. I also have way too many VR full body trackers. Here are some of the "skills" I have in years active:
 	</p>
 	<div class="flex flex-col items-center justify-center lg:flex-row lg:gap-16">
 		<ResponsiveImage src="/images/jovann_hi.webp" width="22.25rem" aspectRatio="1:1" transparent={true} />
 		<div class="mt-6 text-center lg:mt-0 lg:text-left">
 			<ul class="flex list-inside list-disc flex-col gap-y-3 text-xl">
-				<li>16 years of life (via Earth)</li>
-				<li>3 years of content creation (video editing + bad thumbnails)</li>
-				<li>2 years of self-hosting services</li>
+				<li>17 years of life (via Earth)</li>
+				<li>4 years of content creation (video editing + bad thumbnails)</li>
+				<li>3 years of self-hosting services</li>
 				<span class="text-center font-bold lg:text-left">and</span>
 				<li>4 years of Java (via SpigotMC)</li>
+				<li>3 years of web development (svelte my beloved)</li>
 				<li>3 years of C# (via Unity)</li>
-				<li>2 years of JS/TS (via multiple projects)</li>
-				<li>2 years of web development (svelte my beloved)</li>
 			</ul>
 		</div>
 	</div>
