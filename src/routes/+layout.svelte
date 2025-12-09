@@ -80,7 +80,7 @@
 			{#snippet trail()}
 				<div class="hidden items-center gap-8 md:flex">
 					<a href="/" id="home"> Home </a>
-					<a href="/videos" id="videos"> Videos </a>
+					<a href="/blog" id="blogs"> Blog </a>
 					<a href="/contact" id="contact"> Contact </a>
 					<a class="btn rounded-full text-sm" href="/projects" id="projects"> Projects </a>
 				</div>
@@ -94,7 +94,7 @@
 			<div transition:slide={{ duration: 300 }} class="absolute left-0 z-50 w-full">
 				<div class="bg-surface-900 flex flex-col items-center justify-center gap-1 px-4 py-2 shadow-lg">
 					<a href="/" class="block w-full py-2 text-center" id="home"> Home </a>
-					<a href="/videos" class="block w-full py-2 text-center" id="videos"> Videos </a>
+					<a href="/blog" class="block w-full py-2 text-center" id="blogs"> Blog </a>
 					<a href="/contact" class="block w-full py-2 text-center" id="contact"> Contact </a>
 					<a href="/projects" class="btn mb-2 block w-full rounded-full py-2 text-center" id="projects"> Projects </a>
 				</div>

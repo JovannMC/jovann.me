@@ -291,7 +291,6 @@
 			</SplideSlide>
 		{/each}
 	</Splide>
-	<ActionButton text="Videos" href="/videos" />
 </Container>
 
 <!-- Contact section -->
