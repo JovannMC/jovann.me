@@ -7,7 +7,6 @@ published: true
 
 something something hi this is a blog example to show off the formatting
 
-
 you can do stuff idk, make things **bold**, *italic*, ~~struck through~~, or link [somewhere](/projects) ok
 
 # example

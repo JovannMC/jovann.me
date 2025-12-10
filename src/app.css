@@ -12,10 +12,6 @@
 	font-display: swap;
 }
 
-main {
-	min-height: calc(100vh - var(--navbar-height) - 13.5rem);
-}
-
 .btn {
 	@apply border-success-600 border-2;
 }

@@ -63,7 +63,7 @@
 	<meta content="#dddddd" data-react-helmet="true" name="theme-color" />
 </svelte:head>
 
-<div class="main">
+<div class="main flex min-h-screen flex-col">
 	<header class="bg-surface-900 fixed top-0 right-0 left-0 z-50 shadow-lg">
 		<!-- App Bar -->
 		<AppBar>
@@ -102,11 +102,12 @@
 		{/if}
 	</div>
 
-	<main id="page" class="container mx-auto mt-[var(--navbar-height)]">
-		<!-- Main content -->
+	<!-- Main content -->
+	<main id="page" class="container mx-auto mt-(--navbar-height) flex-1">
 		<slot />
 	</main>
 
+	<!-- Footer -->
 	<footer>
 		<Footer />
 	</footer>
