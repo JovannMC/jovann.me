@@ -1,13 +1,48 @@
 <script lang="ts">
-	import { afterNavigate } from '$app/navigation';
+	import { afterNavigate, beforeNavigate } from '$app/navigation';
 	import { AppBar } from '@skeletonlabs/skeleton-svelte';
 	import { onMount } from 'svelte';
 	import { slide } from 'svelte/transition';
 	import '../app.css';
 
 	import Footer from '$lib/components/Footer.svelte';
+	import { quintOut } from 'svelte/easing';
+	import { duration, fade, fly, goingLeft } from '$lib/utils/animation';
+	import { page } from '$app/state';
 
-	let menuOpen = false;
+	let { children } = $props();
+
+		const items = $derived<
+		{
+			name: string;
+			url: string;
+			activeMatch: (pathname: string) => boolean;
+		}[]
+	>([
+		{
+			name: "Home",
+			url: "/",
+			activeMatch: (pathname) => pathname === "/",
+		},
+		{
+			name: "Blog",
+			url: "/blog",
+			activeMatch: (pathname) =>
+				pathname === "/blog" || pathname === "/blog/",
+		},
+		{
+			name:"Contact",
+			url: "/contact",
+			activeMatch: (pathname) => pathname.startsWith("/contact"),
+		},
+		{
+			name: "Projects",
+			url: "/projects/",
+			activeMatch: (pathname) => pathname.startsWith("/projects"),
+		},
+	]);
+
+	let menuOpen = $state(false);
 
 	function toggleMenu() {
 		menuOpen = !menuOpen;
@@ -30,6 +65,22 @@
 
 	onMount(() => {
 		highlightCurrentLink();
+	});
+
+		beforeNavigate((e) => {
+		const oldIndex = items.findIndex((i) =>
+			i.activeMatch(e.from?.url.pathname || ""),
+		);
+		const newIndex = items.findIndex((i) =>
+			i.activeMatch(e.to?.url.pathname || ""),
+		);
+		if (newIndex < oldIndex) {
+			goingLeft.set(true);
+			console.log("going left");
+		} else {
+			goingLeft.set(false);
+			console.log("going right");
+		}
 	});
 
 	afterNavigate(() => {
@@ -69,7 +120,7 @@
 		<AppBar>
 			{#snippet lead()}
 				<!-- Hamburger menu -->
-				<button class="mr-4 h-8 w-8 cursor-pointer md:hidden" on:click={toggleMenu} aria-label="Navigation bar menu">
+				<button class="mr-4 h-8 w-8 cursor-pointer md:hidden" onclick={toggleMenu} aria-label="Navigation bar menu">
 					<svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
 					</svg>
@@ -79,10 +130,10 @@
 			{/snippet}
 			{#snippet trail()}
 				<div class="hidden items-center gap-8 md:flex">
-					<a href="/" id="home"> Home </a>
-					<a href="/blog" id="blogs"> Blog </a>
-					<a href="/contact" id="contact"> Contact </a>
-					<a class="btn rounded-full text-sm" href="/projects" id="projects"> Projects </a>
+					<a href="/" id="home" data-sveltekit-preload-data="hover"> Home </a>
+					<a href="/blog" id="blogs" data-sveltekit-preload-data="hover"> Blog </a>
+					<a href="/contact" id="contact" data-sveltekit-preload-data="hover"> Contact </a>
+					<a class="btn rounded-full text-sm" href="/projects" id="projects" data-sveltekit-preload-data="hover"> Projects </a>
 				</div>
 			{/snippet}
 		</AppBar>
@@ -93,18 +144,50 @@
 		{#if menuOpen}
 			<div transition:slide={{ duration: 300 }} class="absolute left-0 z-50 w-full">
 				<div class="bg-surface-900 flex flex-col items-center justify-center gap-1 px-4 py-2 shadow-lg">
-					<a href="/" class="block w-full py-2 text-center" id="home"> Home </a>
-					<a href="/blog" class="block w-full py-2 text-center" id="blogs"> Blog </a>
-					<a href="/contact" class="block w-full py-2 text-center" id="contact"> Contact </a>
-					<a href="/projects" class="btn mb-2 block w-full rounded-full py-2 text-center" id="projects"> Projects </a>
+					<a href="/" class="block w-full py-2 text-center" id="home" data-sveltekit-preload-data="tap"> Home </a>
+					<a href="/blog" class="block w-full py-2 text-center" id="blogs" data-sveltekit-preload-data="tap"> Blog </a>
+					<a href="/contact" class="block w-full py-2 text-center" id="contact" data-sveltekit-preload-data="tap"> Contact </a>
+					<a href="/projects" class="btn mb-2 block w-full rounded-full py-2 text-center" id="projects" data-sveltekit-preload-data="tap"> Projects </a>
 				</div>
 			</div>
 		{/if}
 	</div>
 
 	<!-- Main content -->
-	<main id="page" class="container mx-auto mt-(--navbar-height) flex-1">
-		<slot />
+	<main id="page" class="container mx-auto mt-(--navbar-height) flex-1 grid grid-rows-1 grid-cols-1 h-full grow">
+		{#key page.url.pathname}
+		<div
+			class="row-start-1 col-start-1"
+			in:fly={{
+				x: $goingLeft ? -window.innerWidth : window.innerWidth,
+				duration,
+				easing: quintOut,
+				delay: 25,
+			}}
+			out:fly={{
+				x: $goingLeft ? window.innerWidth : -window.innerWidth,
+				duration,
+				easing: quintOut,
+			}}
+		>
+			<div
+				class="flex flex-col h-full pb-32"
+				in:fade={{
+					duration,
+					easing: quintOut,
+					delay: 100,
+				}}
+				out:fade={{
+					duration,
+					easing: quintOut,
+					delay: 200,
+				}}
+			>
+						{@render children()}
+
+			</div>
+		</div>
+	{/key}
 	</main>
 
 	<!-- Footer -->
@@ -112,6 +195,7 @@
 		<Footer />
 	</footer>
 </div>
+
 
 <style>
 	:root {
