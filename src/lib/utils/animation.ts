@@ -1,12 +1,7 @@
 // stolen from VERT.sh - https://github.com/VERT-sh/VERT
 // it's okay, i'm one of the main developers there :3
 import { writable } from "svelte/store";
-import {
-	fade as svelteFade,
-	fly as svelteFly,
-	type FadeParams,
-	type FlyParams,
-} from "svelte/transition";
+import { fade as svelteFade, fly as svelteFly, type FadeParams, type FlyParams } from "svelte/transition";
 
 export const goingLeft = writable(false);
 

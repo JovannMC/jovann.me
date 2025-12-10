@@ -7,7 +7,7 @@ published: true
 
 something something hi this is a blog example to show off the formatting
 
-you can do stuff idk, make things **bold**, *italic*, ~~struck through~~, or link [somewhere](/projects) ok
+you can do stuff idk, make things **bold**, _italic_, ~~struck through~~, or link [somewhere](/projects) ok
 
 # example
 
@@ -32,7 +32,7 @@ inline code `bun run dev` then some code blocks:
 ```typescript
 // typescript
 function hello(name: String) {
-  console.log(`Hello ${name}`);
+	console.log(`Hello ${name}`);
 }
 
 hello("World");
@@ -52,7 +52,7 @@ hello('World')
 and make tables or something:
 
 | statement    | never gonna |
-|--------------|-------------|
+| ------------ | ----------- |
 | give you up  | ✅          |
 | let you down | ✅          |
 | run around   | ✅          |
