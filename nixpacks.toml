@@ -1,2 +1,0 @@
-[phases.install]
-nixPkgs = ['nodejs20', 'npm-9x', 'gcc', 'g++', 'make', 'python3', 'pkg-config']

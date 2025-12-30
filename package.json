@@ -44,13 +44,11 @@
 	},
 	"dependencies": {
 		"@splidejs/svelte-splide": "^0.2.9",
-		"@types/better-sqlite3": "^7.6.13",
-		"better-sqlite3": "^9.6.0",
+		"sqlite3": "^5.1.6",
 		"typeit": "^8.8.7"
 	},
 	"trustedDependencies": [
 		"@tailwindcss/oxide",
-		"better-sqlite3",
 		"esbuild",
 		"typeit"
 	],
