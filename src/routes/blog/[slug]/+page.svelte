@@ -34,7 +34,7 @@
 	.prose {
 		color: white;
 	}
-	
+
 	.prose :global(h1),
 	.prose :global(h2),
 	.prose :global(h3),
@@ -73,7 +73,8 @@
 	}
 	
 	.prose :global(h3) {
-		font-size: 1.5rem;
+		font-size: 1.25rem;
+		border-bottom: 2px solid white;
 	}
 	
 	.prose :global(p) {
@@ -95,8 +96,14 @@
 		border-radius: 8px;
 		margin: 2rem auto;
 		max-width: 100%;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
-        border: 4px solid var(--color-surface-400);
+		box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+		border: 6px solid var(--color-surface-400);
+	}
+
+	@media (max-width: 768px) {
+		.prose :global(img) {
+			border: 4px solid var(--color-surface-400);
+		}
 	}
 	
 	.prose :global(pre) {
@@ -142,6 +149,11 @@
 		color: rgb(var(--color-surface-300));
 		list-style-type: decimal;
 		list-style-position: outside;
+	}
+
+	.prose :global(li ul),
+	.prose :global(li ol) {
+		margin: 0.5rem 0;
 	}
 	
 	.prose :global(li) {

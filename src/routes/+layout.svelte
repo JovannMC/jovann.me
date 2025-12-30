@@ -12,13 +12,14 @@
 
 	let { children } = $props();
 
-		const items = $derived<
-		{
-			name: string;
-			url: string;
-			activeMatch: (pathname: string) => boolean;
-		}[]
-	>([
+	// TODO: actually use this to generate the navbar links
+	const items = $derived<
+	{
+		name: string;
+		url: string;
+		activeMatch: (pathname: string) => boolean;
+	}[]>
+	([
 		{
 			name: "Home",
 			url: "/",
@@ -154,7 +155,7 @@
 	</div>
 
 	<!-- Main content -->
-	<main id="page" class="container mx-auto mt-(--navbar-height) flex-1 grid grid-rows-1 grid-cols-1 h-full grow">
+	<main id="page" class="container mx-auto mt-(--navbar-height) flex-1 grid grid-rows-1 grid-cols-1 h-full">
 		{#key page.url.pathname}
 		<div
 			class="row-start-1 col-start-1"
@@ -171,7 +172,7 @@
 			}}
 		>
 			<div
-				class="flex flex-col h-full pb-32"
+				class="flex flex-col"
 				in:fade={{
 					duration,
 					easing: quintOut,
@@ -183,8 +184,7 @@
 					delay: 200,
 				}}
 			>
-						{@render children()}
-
+				{@render children()}
 			</div>
 		</div>
 	{/key}
