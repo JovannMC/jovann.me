@@ -54,5 +54,5 @@
 		"esbuild",
 		"typeit"
 	],
-	"packageManager": "pnpm@10.26.2"
+	"packageManager": "npm@10.9.0"
 }
