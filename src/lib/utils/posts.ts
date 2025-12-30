@@ -32,3 +32,7 @@ export async function getPost(slug: string) {
 		return null;
 	}
 }
+
+export function formatCount(count: number | null | undefined): string {
+	return typeof count === "number" ? count.toLocaleString() : "—";
+}

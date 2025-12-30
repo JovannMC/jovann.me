@@ -1,7 +1,21 @@
-<script>
+<script lang="ts">
 	import Container from '$lib/components/Container.svelte';
-	
+	import { formatCount } from '$lib/utils/posts.js';
+	import { onMount } from 'svelte';
+
 	let { data } = $props();
+	let viewCount = $state<number | null>(null);
+
+	onMount(async () => {
+		try {
+			const res = await fetch(`/api/views/${data.post.slug}`, { method: 'POST' });
+			if (!res.ok) return;
+			const { count } = await res.json();
+			viewCount = count; // will be formatted as "-" with formatCount if null
+		} catch (err) {
+			console.error(`error incrementing view count: ${err}`);
+		}
+	});
 </script>
 
 <svelte:head>
@@ -19,9 +33,12 @@
 					{#if data.post.description}
 			<p class="text-surface-50 text-lg">{data.post.description}</p>
 		{/if}
-		{#if data.post.date}
-			<p class="text-surface-100 mt-2">{new Date(data.post.date).toLocaleDateString()}</p>
-		{/if}
+		<div class="flex flex-wrap items-center justify-between text-surface-100 mt-2 text-sm">
+			{#if data.post.date}
+				<p>{new Date(data.post.date).toLocaleDateString()}</p>
+			{/if}
+			<p>Views: {formatCount(viewCount)}</p>
+		</div>
 		</div>
 
 		<article class="prose bg-surface-900 border-2 border-surface-300 rounded-lg p-4 md:p-6 -mx-4 md:mx-0">

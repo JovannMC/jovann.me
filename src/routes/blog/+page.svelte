@@ -1,7 +1,23 @@
-<script>
-	import Container from '$lib/components/Container.svelte';
-	
-	let { data } = $props();
+<script lang="ts">
+    import Container from '$lib/components/Container.svelte';
+	import { formatCount } from '$lib/utils/posts.js';
+    import { onMount } from 'svelte';
+
+    let { data } = $props();
+    let viewCounts = $state<Record<string, number>>({});
+
+    onMount(async () => {
+        if (!data.posts.length) return;
+        try {
+            const slugs = data.posts.map((p) => p.slug).join(',');
+            const res = await fetch(`/api/views?slugs=${encodeURIComponent(slugs)}`);
+            if (!res.ok) return;
+            const { counts } = await res.json();
+            viewCounts = counts ?? {};
+        } catch (err) {
+            console.error(`error fetching view counts: ${err}`);
+        }
+    });
 </script>
 
 <svelte:head>
@@ -23,17 +39,20 @@
                         {data.posts.length % 2 === 1 && i === data.posts.length - 1 ? 'md:col-span-2' : ''}"
                 >
                     <a href="/blog/{post.slug}" class="block">
-                        <h2 class="text-2xl font-bold mb-2 transition-colors">
+                        <h2 class="text-2xl font-bold transition-colors">
                             {post.title}
                         </h2>
-                        {#if post.date}
-                            <time class="text-sm text-surface-300">
-                                {new Date(post.date).toLocaleDateString()}
-                            </time>
-                        {/if}
                         {#if post.description}
-                            <p class="mt-3 text-surface-200">{post.description}</p>
+                            <p class="mt-2 text-surface-200">{post.description}</p>
                         {/if}
+                        <div class="mt-6 flex items-center gap-3 text-sm text-surface-300">
+                            {#if post.date}
+                                <time>
+                                    {new Date(post.date).toLocaleDateString()}
+                                </time>
+                            {/if}
+                            <span class="ml-auto">Views: {formatCount(viewCounts?.[post.slug])}</span>
+                        </div>
                     </a>
                 </article>
             {/each}
