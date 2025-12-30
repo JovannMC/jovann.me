@@ -6,9 +6,29 @@
 	let { data } = $props();
 	let viewCount = $state<number | null>(null);
 
+	function getClientId(): string {
+		// this can be spoofed, but i only really want to prevent simple refresh spamming
+		// or spammed curl requests (w/ the client id requirement)
+		const key = 'blog_client_id';
+		let clientId = localStorage.getItem(key);
+		if (!clientId) {
+			clientId = crypto.randomUUID();
+			localStorage.setItem(key, clientId);
+		}
+		return clientId;
+	}
+
 	onMount(async () => {
+		// only count view after a short delay to filter out bounces
+		await new Promise(resolve => setTimeout(resolve, 1000));
+		
 		try {
-			const res = await fetch(`/api/views/${data.post.slug}`, { method: 'POST' });
+			const clientId = getClientId();
+			const res = await fetch(`/api/views/${data.post.slug}`, {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({ clientId })
+			});
 			if (!res.ok) return;
 			const { count } = await res.json();
 			viewCount = count; // will be formatted as "-" with formatCount if null

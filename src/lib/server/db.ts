@@ -1,4 +1,5 @@
 import sqlite3 from "sqlite3";
+import crypto from "crypto";
 import fs from "fs";
 import path from "path";
 
@@ -32,19 +33,62 @@ db.serialize(() => {
         updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
     )
 `);
+	db.run(`
+    CREATE TABLE IF NOT EXISTS view_tokens (
+        token TEXT PRIMARY KEY,
+        slug TEXT NOT NULL,
+        created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+    )
+`);
+	// clean old tokens on startup (older than 1 hour)
+	db.run("DELETE FROM view_tokens WHERE created_at < datetime('now', '-1 hour')");
 });
 
-export async function incrementView(slug: string): Promise<number> {
+function generateToken(slug: string, clientId: string): string {
+	const now = new Date();
+	const dateHour = `${now.toISOString().split("T")[0]}-${now.getUTCHours().toString().padStart(2, "0")}`; // YYYY-MM-DD-HH
+	const hash = crypto.createHash("sha256").update(`${slug}:${clientId}:${dateHour}`).digest("hex");
+	return hash;
+}
+
+export async function incrementView(slug: string, clientId: string): Promise<number> {
+	const token = generateToken(slug, clientId);
+
 	return new Promise((resolve, reject) => {
-		db.run(
-			"INSERT INTO views (slug, count) VALUES (?, 1) ON CONFLICT(slug) DO UPDATE SET count = count + 1, updated_at = CURRENT_TIMESTAMP",
-			[slug],
-			function (err: Error | null) {
+		// check if token already exists
+		db.get(
+			"SELECT token FROM view_tokens WHERE token = ?",
+			[token],
+			(err: Error | null, row: { token: string } | undefined) => {
 				if (err) return reject(err);
-				db.get("SELECT count FROM views WHERE slug = ?", [slug], (err: Error | null, row: ViewRow | undefined) => {
-					if (err) return reject(err);
-					resolve(row?.count ?? 0);
-				});
+
+				if (row) {
+					// if token exists, do not increment
+					db.get("SELECT count FROM views WHERE slug = ?", [slug], (err: Error | null, row: ViewRow | undefined) => {
+						if (err) return reject(err);
+						resolve(row?.count ?? 0);
+					});
+				} else {
+					// if token does not exist, increment and store token
+					db.run(
+						"INSERT INTO views (slug, count) VALUES (?, 1) ON CONFLICT(slug) DO UPDATE SET count = count + 1, updated_at = CURRENT_TIMESTAMP",
+						[slug],
+						function (err: Error | null) {
+							if (err) return reject(err);
+							db.run("INSERT INTO view_tokens (token, slug) VALUES (?, ?)", [token, slug], (err: Error | null) => {
+								if (err) console.error("Error storing token:", err);
+							});
+							db.get(
+								"SELECT count FROM views WHERE slug = ?",
+								[slug],
+								(err: Error | null, row: ViewRow | undefined) => {
+									if (err) return reject(err);
+									resolve(row?.count ?? 0);
+								}
+							);
+						}
+					);
+				}
 			}
 		);
 	});
