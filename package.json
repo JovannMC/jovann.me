@@ -51,6 +51,7 @@
 	"trustedDependencies": [
 		"@tailwindcss/oxide",
 		"esbuild",
+		"sqlite3",
 		"typeit"
 	],
 	"packageManager": "npm@10.9.0"
