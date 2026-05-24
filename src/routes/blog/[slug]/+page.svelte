@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Container from '$lib/components/Container.svelte';
 	import { formatCount } from '$lib/utils/posts.js';
-	import { onMount } from 'svelte';
+	import { onMount, tick } from 'svelte';
 
 	let { data } = $props();
 	let viewCount = $state<number | null>(null);
@@ -34,6 +34,27 @@
 			viewCount = count; // will be formatted as "-" with formatCount if null
 		} catch (err) {
 			console.error(`error incrementing view count: ${err}`);
+		}
+
+		// add alt text captions to images
+		await tick();
+		const articleEl = document.querySelector('article.prose');
+		if (articleEl) {
+			const imgs = Array.from(articleEl.querySelectorAll('img')) as HTMLImageElement[];
+			imgs.forEach(img => {
+				if (img.closest('figure')) return; // already wrapped
+				const parent = img.parentElement;
+				const nodeToWrap = parent && parent.tagName.toLowerCase() === 'a' ? parent : img;
+				const alt = img.getAttribute('alt') || '';
+				const figure = document.createElement('figure');
+				figure.className = 'prose-image-figure';
+				const caption = document.createElement('figcaption');
+				caption.className = 'prose-image-caption';
+				caption.textContent = alt;
+				nodeToWrap.parentNode?.insertBefore(figure, nodeToWrap);
+				figure.appendChild(nodeToWrap);
+				if (alt) figure.appendChild(caption);
+			});
 		}
 	});
 </script>
@@ -131,7 +152,7 @@
 	
 	.prose :global(img) {
 		border-radius: 8px;
-		margin: 2rem auto;
+		margin: 1.5rem auto;
 		max-width: 100%;
 		box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
 		border: 6px solid var(--color-surface-400);
@@ -141,6 +162,20 @@
 		.prose :global(img) {
 			border: 4px solid var(--color-surface-400);
 		}
+	}
+
+	.prose :global(figure.prose-image-figure) {
+		display: block;
+		margin: 2rem auto;
+		text-align: center;
+		max-width: 100%;
+	}
+
+	.prose :global(figcaption.prose-image-caption) {
+		font-size: 0.9rem;
+		color: rgb(var(--color-surface-400));
+		font-style: italic;
+		line-height: 1.2;
 	}
 	
 	.prose :global(pre) {
