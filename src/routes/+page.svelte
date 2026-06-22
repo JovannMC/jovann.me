@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { Splide, SplideSlide, type Options } from '@splidejs/svelte-splide';
+	// @ts-expect-error - this is css whar (docs say to do this shut up ts - https://splidejs.com/integration/svelte-splide/)
 	import '@splidejs/svelte-splide/css';
 	import { onMount } from 'svelte';
 	import TypeIt from 'typeit';
@@ -259,7 +260,7 @@
 <!-- Featured projects section -->
 <Container title="Some of my work..">
 	<Splide {options} aria-label="Featured projects">
-		{#each projects as project}
+		{#each projects as project (project.title)}
 			<SplideSlide>
 				<Card
 					title={project.title}
@@ -279,7 +280,7 @@
 <!-- Featured videos section -->
 <Container title="..and my videos too!">
 	<Splide {options} aria-label="Featured videos">
-		{#each videos as video}
+		{#each videos as video (video.title)}
 			<SplideSlide>
 				<Card
 					title={video.title}

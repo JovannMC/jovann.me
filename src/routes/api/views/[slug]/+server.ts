@@ -11,11 +11,11 @@ export async function GET({ params }) {
 export async function POST({ params, request }) {
 	const slug = params.slug;
 	if (!slug) return json({ error: "slug is required" }, { status: 400 });
-	
+
 	const body = await request.json();
 	const clientId = body?.clientId;
 	if (!clientId) return json({ error: "clientId is required" }, { status: 400 });
-	
+
 	const count = await incrementView(slug, clientId);
 	return json({ count });
 }

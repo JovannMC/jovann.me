@@ -114,10 +114,10 @@
 		Here are all the ways you can contact me! Bug me about issues, ask me questions, or just say hi!<br /><br />
 		You can also find all the other platforms I am active on - watching, creating, or just existing.
 	</p>
-	{#each socialCategories as category}
+	{#each socialCategories as category (category.category)}
 		<h2 class="my-4 text-center text-2xl font-bold">{category.category}</h2>
 		<div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
-			{#each category.links as link}
+			{#each category.links as link (link.name)}
 				<HorizontalCard
 					title={link.name}
 					description={link.description}

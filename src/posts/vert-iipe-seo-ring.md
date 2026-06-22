@@ -1,7 +1,7 @@
 ---
 title: "VERT.sh, ii.Pe, and an AI SEO spam ring"
 date: "2026-06-23"
-description: "How investigating a FOSS clone led to.. a weird SEO spam ring \"assisted\" by AI"
+description: 'How investigating a FOSS clone led to.. a weird SEO spam ring "assisted" by AI'
 published: true
 ---
 

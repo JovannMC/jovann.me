@@ -3,6 +3,7 @@
 	import Container from '$lib/components/Container.svelte';
 
 	import { Splide, SplideSlide, type Options } from '@splidejs/svelte-splide';
+	// @ts-expect-error - this is css whar (docs say to do this shut up ts - https://splidejs.com/integration/svelte-splide/)
 	import '@splidejs/svelte-splide/css';
 
 	let options = {
@@ -257,10 +258,10 @@
 	</p>
 </Container>
 
-{#each projectCategories as category}
+{#each projectCategories as category (category.category)}
 	<Container title={category.category}>
 		<Splide {options} aria-label={category.category}>
-			{#each category.projects as project}
+			{#each category.projects as project (project.title)}
 				<SplideSlide>
 					<Card
 						title={project.title}

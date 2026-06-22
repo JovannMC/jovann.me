@@ -82,6 +82,7 @@
 		</div>
 		</div>
 
+		<!-- TODO: allow clicking on image to expand -->
 		<article class="prose bg-surface-900 border-2 border-surface-300 rounded-lg p-4 md:p-6 -mx-4 md:mx-0">
 			<data.post.component />
 		</article>

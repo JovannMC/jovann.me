@@ -33,7 +33,7 @@
         <p class="text-center text-surface-400">No posts yet. Check back soon!</p>
     {:else}
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {#each data.posts as post, i}
+            {#each data.posts as post, i (post.slug)}
                 <article
                     class="bg-surface-900 border-2 border-surface-500 rounded-lg p-6 hover:border-surface-300 transition-colors
                         {data.posts.length % 2 === 1 && i === data.posts.length - 1 ? 'md:col-span-2' : ''}"
