@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { afterNavigate, beforeNavigate } from '$app/navigation';
 	import { AppBar } from '@skeletonlabs/skeleton-svelte';
-	import { onMount } from 'svelte';
 	import { slide } from 'svelte/transition';
 	import '../app.css';
 
@@ -12,63 +11,37 @@
 
 	let { children } = $props();
 
-	// TODO: actually use this to generate the navbar links
-	const items = $derived<
-	{
-		name: string;
-		url: string;
-		activeMatch: (pathname: string) => boolean;
-	}[]>
-	([
+	const items = [
 		{
 			name: "Home",
 			url: "/",
-			activeMatch: (pathname) => pathname === "/",
+			activeMatch: (pathname: string) => pathname === "/",
 		},
 		{
 			name: "Blog",
 			url: "/blog",
-			activeMatch: (pathname) =>
+			activeMatch: (pathname: string) =>
 				pathname === "/blog" || pathname === "/blog/",
 		},
 		{
-			name:"Contact",
+			name: "Contact",
 			url: "/contact",
-			activeMatch: (pathname) => pathname.startsWith("/contact"),
+			activeMatch: (pathname: string) => pathname.startsWith("/contact"),
 		},
 		{
 			name: "Projects",
-			url: "/projects/",
-			activeMatch: (pathname) => pathname.startsWith("/projects"),
+			url: "/projects",
+			activeMatch: (pathname: string) => pathname.startsWith("/projects"),
 		},
-	]);
+	];
 
 	let menuOpen = $state(false);
 
 	function toggleMenu() {
 		menuOpen = !menuOpen;
-		// makes sure that highlighted link also shows in hamburger menu for mobile
-		setTimeout(highlightCurrentLink, 0);
 	}
 
-	function highlightCurrentLink() {
-		let url = window.location.href;
-		let navLinks = document.querySelectorAll('a');
-
-		navLinks.forEach((link) => {
-			if (link.href === url) {
-				link.classList.add('font-bold');
-			} else {
-				link.classList.remove('font-bold');
-			}
-		});
-	}
-
-	onMount(() => {
-		highlightCurrentLink();
-	});
-
-		beforeNavigate((e) => {
+	beforeNavigate((e) => {
 		const oldIndex = items.findIndex((i) =>
 			i.activeMatch(e.from?.url.pathname || ""),
 		);
@@ -88,7 +61,6 @@
 		// Fixes sveltekit issue w/ scroll preservation on navigation
 		document.getElementById('page')?.scrollTo(0, 0);
 		menuOpen = false;
-		highlightCurrentLink();
 	});
 </script>
 
@@ -101,18 +73,6 @@
 	<link rel="icon" type="image/png" sizes="16x16" href="/images/favicons/favicon-16x16.png" />
 	<link rel="icon" type="image/png" sizes="32x32" href="/images/favicons/favicon-32x32.png" />
 	<link rel="icon" type="image/x-icon" href="/favicon.ico" />
-
-	<!-- SEO -->
-	<meta name="description" content="Personal website/portfolio of JovannMC" />
-	<meta name="keywords" content="JovannMC, portfolio, website" />
-	<meta name="author" content="JovannMC" />
-
-	<!-- Open Graph Tags -->
-	<meta content="jovann.me" property="og:title" />
-	<meta content="Personal website/portfolio of JovannMC" property="og:description" />
-	<meta content="https://jovann.me" property="og:url" />
-	<meta content="https://jovann.me/images/jovannmc_white.png" property="og:image" />
-	<meta content="#dddddd" data-react-helmet="true" name="theme-color" />
 </svelte:head>
 
 <div class="main flex min-h-screen flex-col">
@@ -131,10 +91,15 @@
 			{/snippet}
 			{#snippet trail()}
 				<div class="hidden items-center gap-8 md:flex">
-					<a href="/" id="home" data-sveltekit-preload-data="hover"> Home </a>
-					<a href="/blog" id="blogs" data-sveltekit-preload-data="hover"> Blog </a>
-					<a href="/contact" id="contact" data-sveltekit-preload-data="hover"> Contact </a>
-					<a class="btn rounded-full text-sm" href="/projects" id="projects" data-sveltekit-preload-data="hover"> Projects </a>
+					{#each items as item (item.name)}
+						<a
+							href={item.url}
+							class="{item.activeMatch(page.url.pathname) ? 'font-bold' : ''} {item.name === 'Projects' ? 'btn rounded-full text-sm' : ''}"
+							data-sveltekit-preload-data="hover"
+						>
+							{item.name}
+						</a>
+					{/each}
 				</div>
 			{/snippet}
 		</AppBar>
@@ -143,12 +108,17 @@
 	<!-- Hamburger menu contents -->
 	<div class="md:hidden" class:open={menuOpen}>
 		{#if menuOpen}
-			<div transition:slide={{ duration: 300 }} class="absolute left-0 z-50 w-full">
+			<div transition:slide={{ duration: 300 }} class="fixed top-(--navbar-height) left-0 z-40 w-full">
 				<div class="bg-surface-900 flex flex-col items-center justify-center gap-1 px-4 py-2 shadow-lg">
-					<a href="/" class="block w-full py-2 text-center" id="home" data-sveltekit-preload-data="tap"> Home </a>
-					<a href="/blog" class="block w-full py-2 text-center" id="blogs" data-sveltekit-preload-data="tap"> Blog </a>
-					<a href="/contact" class="block w-full py-2 text-center" id="contact" data-sveltekit-preload-data="tap"> Contact </a>
-					<a href="/projects" class="btn mb-2 block w-full rounded-full py-2 text-center" id="projects" data-sveltekit-preload-data="tap"> Projects </a>
+					{#each items as item (item.name)}
+						<a
+							href={item.url}
+							class="block w-full py-2 text-center {item.activeMatch(page.url.pathname) ? 'font-bold' : ''} {item.name === 'Projects' ? 'btn mb-2 rounded-full' : ''}"
+							data-sveltekit-preload-data="tap"
+						>
+							{item.name}
+						</a>
+					{/each}
 				</div>
 			</div>
 		{/if}

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Container from '$lib/components/Container.svelte';
 	import HorizontalCard from '$lib/components/HorizontalCard.svelte';
+	import Seo from '$lib/components/Seo.svelte';
 
 	let socialCategories = [
 		{
@@ -105,9 +106,11 @@
 	];
 </script>
 
-<svelte:head>
-	<title>Contact me!</title>
-</svelte:head>
+<Seo
+	title="Contact"
+	description="Find all the ways you can contact me! Bug me about issues, ask me questions, or just say hi!"
+	keywords="JovannMC, contact, email, Discord, social media"
+/>
 
 <Container title="Contact me!">
 	<p class="justify-center text-center text-xl">

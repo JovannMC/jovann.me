@@ -1,5 +1,6 @@
 <script lang="ts">
     import Container from '$lib/components/Container.svelte';
+    import Seo from '$lib/components/Seo.svelte';
 	import { formatCount } from '$lib/utils/posts.js';
     import { onMount } from 'svelte';
 
@@ -20,13 +21,15 @@
     });
 </script>
 
-<svelte:head>
-	<title>Blog</title>
-</svelte:head>
+<Seo
+	title="Blog"
+	description="Some little posts where I write about stuff! Personal updates, findings, deep dives, and more."
+	keywords="JovannMC, blog, deep dives, personal updates, programming"
+/>
 
 <Container title="Blog">
     <p class="justify-center text-center text-xl mb-8">
-        Some little posts where I write about stuff! Ranges from personal updates to personal findings and more.
+        Some little posts where I write about stuff! Personal updates, findings, deep dives, and more.
     </p>
 
     {#if data.posts.length === 0}

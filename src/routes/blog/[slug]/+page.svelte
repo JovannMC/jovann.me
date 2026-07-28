@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Container from '$lib/components/Container.svelte';
+	import Seo from '$lib/components/Seo.svelte';
 	import { formatCount } from '$lib/utils/posts.js';
 	import { onDestroy, onMount, tick } from 'svelte';
 
@@ -99,12 +100,11 @@
 	});
 </script>
 
-<svelte:head>
-	<title>{data.post.title}</title>
-	{#if data.post.description}
-		<meta name="description" content={data.post.description} />
-	{/if}
-</svelte:head>
+<Seo
+	title={data.post.title}
+	description={data.post.description || `JovannMC's Blog - ${data.post.title}`}
+	keywords={`JovannMC, blog, ${data.post.title}`}
+/>
 
 <Container>
 	<div class="flex flex-col gap-8">

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Card from '$lib/components/Card.svelte';
 	import Container from '$lib/components/Container.svelte';
+	import Seo from '$lib/components/Seo.svelte';
 
 	import { Splide, SplideSlide, type Options } from '@splidejs/svelte-splide';
 	// @ts-expect-error - this is css whar (docs say to do this shut up ts - https://splidejs.com/integration/svelte-splide/)
@@ -245,13 +246,15 @@
 	];
 </script>
 
-<svelte:head>
-	<title>My projects!</title>
-</svelte:head>
+<Seo
+	title="Projects"
+	description="Find some of the projects I've worked on! Web development, software development, games, and other stuff!"
+	keywords="JovannMC, projects, software development, programming, open source"
+/>
 
 <Container title="My projects!">
 	<p class="justify-center text-center text-xl">
-		Here are some of the projects I've worked on ranging from programs and websites, to games and Minecraft plugins!<br
+		Here are some of the projects I've worked on: web development, software development, games, and other stuff!<br
 		/>
 		<br />
 		Click on any of the project cards to visit and learn more about them.

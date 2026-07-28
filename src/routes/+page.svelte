@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Seo from '$lib/components/Seo.svelte';
 	import { Splide, SplideSlide, type Options } from '@splidejs/svelte-splide';
 	// @ts-expect-error - this is css whar (docs say to do this shut up ts - https://splidejs.com/integration/svelte-splide/)
 	import '@splidejs/svelte-splide/css';
@@ -202,9 +203,10 @@
 	];
 </script>
 
-<svelte:head>
-	<title>jovann.me</title>
-</svelte:head>
+<Seo
+	title="Home"
+	keywords="JovannMC, personal website, portfolio, software developer, content creator, programming"
+/>
 
 <section class="content">
 	<div class="flex flex-col items-center justify-center" style="min-height: calc(100vh - var(--navbar-height));">
