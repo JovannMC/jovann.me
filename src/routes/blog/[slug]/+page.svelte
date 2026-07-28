@@ -1,10 +1,15 @@
 <script lang="ts">
 	import Container from '$lib/components/Container.svelte';
 	import { formatCount } from '$lib/utils/posts.js';
-	import { onMount, tick } from 'svelte';
+	import { onDestroy, onMount, tick } from 'svelte';
 
 	let { data } = $props();
 	let viewCount = $state<number | null>(null);
+
+	interface LightboxInstance {
+		destroy(): void;
+	}
+	let lightbox: LightboxInstance | null = null;
 
 	function getClientId(): string {
 		// this can be spoofed, but i only really want to prevent simple refresh spamming
@@ -19,8 +24,13 @@
 	}
 
 	onMount(async () => {
+		const [{ default: GLightbox }] = await Promise.all([
+			import('glightbox'),
+			import('glightbox/dist/css/glightbox.min.css')
+		]);
+
 		// only count view after a short delay to filter out bounces
-		await new Promise(resolve => setTimeout(resolve, 1000));
+		await new Promise(resolve => setTimeout(resolve, 2500));
 		
 		try {
 			const clientId = getClientId();
@@ -36,7 +46,7 @@
 			console.error(`error incrementing view count: ${err}`);
 		}
 
-		// add alt text captions to images
+		// add lightbox + alt text captions to images
 		await tick();
 		const articleEl = document.querySelector('article.prose');
 		if (articleEl) {
@@ -44,8 +54,18 @@
 			imgs.forEach(img => {
 				if (img.closest('figure')) return; // already wrapped
 				const parent = img.parentElement;
-				const nodeToWrap = parent && parent.tagName.toLowerCase() === 'a' ? parent : img;
 				const alt = img.getAttribute('alt') || '';
+
+				// wrap image in lightbox anchor
+				const lightboxLink = document.createElement('a');
+				lightboxLink.href = img.src;
+				lightboxLink.className = 'glightbox';
+				lightboxLink.setAttribute('data-glightbox', `title: ${alt}`);
+				img.parentNode?.insertBefore(lightboxLink, img);
+				lightboxLink.appendChild(img);
+
+				// caption
+				const nodeToWrap = parent && parent.tagName.toLowerCase() === 'a' ? parent : lightboxLink;
 				const figure = document.createElement('figure');
 				figure.className = 'prose-image-figure';
 				const caption = document.createElement('figcaption');
@@ -55,6 +75,26 @@
 				figure.appendChild(nodeToWrap);
 				if (alt) figure.appendChild(caption);
 			});
+
+			lightbox = GLightbox({
+				touchNavigation: true,
+				loop: true,
+				zoomable: false,
+				draggable: false,
+				selector: '.glightbox',
+				skin: 'dark',
+				openEffect: 'fade',
+				closeEffect: 'fade',
+				slideEffect: 'fade',
+				moreLength: 0
+			});
+		}
+	});
+
+	onDestroy(() => {
+		if (lightbox) {
+			lightbox.destroy();
+			lightbox = null;
 		}
 	});
 </script>
@@ -82,7 +122,6 @@
 		</div>
 		</div>
 
-		<!-- TODO: allow clicking on image to expand -->
 		<article class="prose bg-surface-900 border-2 border-surface-300 rounded-lg p-4 md:p-6 -mx-4 md:mx-0">
 			<data.post.component />
 		</article>
@@ -250,5 +289,185 @@
 	.prose :global(th) {
 		background: var(--color-surface-300);
 		font-weight: 600;
+	}
+
+	/*
+	 * Glightbox styles
+	 */
+	:global(.glightbox-dark .goverlay) {
+		background: rgba(0, 0, 0, 0.92);
+		backdrop-filter: blur(4px);
+	}
+
+	:global(.glightbox-dark .gcontainer) {
+		padding: 1.5rem;
+		box-sizing: border-box;
+	}
+
+	:global(.glightbox-dark .gslide) {
+		height: 100%;
+	}
+
+	:global(.glightbox-dark .gslide-inner-content) {
+		width: 100%;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	:global(.glightbox-dark .ginner-container) {
+		max-width: calc(100vw - 3rem);
+		max-height: calc(100vh - 3rem);
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		gap: 1rem;
+	}
+
+	:global(.glightbox-dark .gslide-media) {
+		flex: 1 1 auto;
+		min-height: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: 8px;
+		border: 4px solid var(--color-surface-400);
+		box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+		overflow: hidden;
+	}
+
+	:global(.glightbox-dark .gslide-media img) {
+		max-height: 100% !important;
+		max-width: 100%;
+		width: auto;
+		height: auto;
+		display: block;
+	}
+
+	:global(.glightbox-dark .gslide-description) {
+		flex: 0 0 auto;
+		background: var(--color-surface-900);
+		border: 2px solid var(--color-surface-300);
+		border-radius: 8px;
+		padding: 0.5rem 0.75rem;
+		max-width: 100%;
+	}
+
+	:global(.glightbox-dark .gslide-title) {
+		color: white;
+		font-size: 0.9rem;
+		font-weight: 600;
+	}
+
+	:global(.glightbox-dark .gprev),
+	:global(.glightbox-dark .gnext),
+	:global(.glightbox-dark .gclose) {
+		position: fixed;
+		z-index: 99999;
+		cursor: pointer;
+		border: none;
+		background: rgba(39, 39, 39, 0.72);
+		border-radius: 8px;
+		width: 44px;
+		height: 44px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transition: background 0.2s;
+	}
+
+	:global(.glightbox-dark .gprev:hover),
+	:global(.glightbox-dark .gnext:hover),
+	:global(.glightbox-dark .gclose:hover) {
+		background: rgba(207, 207, 207, 0.24);
+	}
+
+	:global(.glightbox-dark .gprev svg),
+	:global(.glightbox-dark .gnext svg),
+	:global(.glightbox-dark .gclose svg) {
+		fill: white;
+		width: 20px;
+		height: 20px;
+	}
+
+	:global(.glightbox-dark .gprev) {
+		left: 1rem;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+
+	:global(.glightbox-dark .gnext) {
+		right: 1rem;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+
+	:global(.glightbox-dark .gclose) {
+		top: 1rem;
+		right: 1rem;
+	}
+
+	:global(.glightbox-dark .gloader) {
+		border-color: var(--color-surface-300);
+		border-top-color: white;
+	}
+
+	@media (max-width: 768px) {
+		:global(.glightbox-dark .gcontainer) {
+			padding: 0.75rem;
+		}
+
+		:global(.glightbox-dark .ginner-container) {
+			max-width: calc(100vw - 1.5rem);
+			max-height: calc(100vh - 1.5rem);
+			height: 100%;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			gap: 0.75rem;
+		}
+
+		:global(.glightbox-dark .gslide-title) {
+			text-align: center;
+		}
+
+		:global(.glightbox-dark .gslide-media) {
+			min-height: 0;
+			overflow: hidden;
+			border: 0;
+		}
+
+		:global(.glightbox-dark .gslide-description) {
+			background: var(--color-surface-900) !important;
+		}
+
+		:global(.glightbox-dark .gslide-media img) {
+			max-width: 100%;
+			max-height: 100% !important;
+			display: block;
+			border: 4px solid var(--color-surface-400);
+			border-radius: 8px;
+		}
+
+		:global(.glightbox-dark .gprev),
+		:global(.glightbox-dark .gnext) {
+			width: 36px;
+			height: 36px;
+			top: auto;
+			bottom: 1.25rem;
+			transform: none;
+		}
+
+		:global(.glightbox-dark .gprev) {
+			left: 1.25rem;
+		}
+
+		:global(.glightbox-dark .gnext) {
+			right: 1.25rem;
+		}
 	}
 </style>
