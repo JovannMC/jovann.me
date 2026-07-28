@@ -104,6 +104,28 @@
 	title={data.post.title}
 	description={data.post.description || `JovannMC's Blog - ${data.post.title}`}
 	keywords={`JovannMC, blog, ${data.post.title}`}
+	jsonLd={{
+		"@context": "https://schema.org",
+		"@type": "BlogPosting",
+		"headline": data.post.title,
+		"description": data.post.description || `JovannMC's Blog - ${data.post.title}`,
+		"url": `https://jovann.me/blog/${data.post.slug}`,
+		"datePublished": data.post.date,
+		"author": {
+			"@type": "Person",
+			"name": "JovannMC",
+			"url": "https://jovann.me"
+		},
+		"publisher": {
+			"@type": "Person",
+			"name": "JovannMC",
+			"url": "https://jovann.me"
+		},
+		"mainEntityOfPage": {
+			"@type": "WebPage",
+			"@id": `https://jovann.me/blog/${data.post.slug}`
+		}
+	}}
 />
 
 <Container>

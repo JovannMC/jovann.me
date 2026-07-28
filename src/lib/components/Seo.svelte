@@ -11,6 +11,7 @@
 		ogType?: string;
 		themeColor?: string;
 		noIndex?: boolean;
+		jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 	}
 
 	let {
@@ -23,10 +24,15 @@
 		ogType = 'website',
 		themeColor = '#dddddd',
 		noIndex = false,
+		jsonLd,
 	}: Props = $props();
 
 	const fullTitle = $derived(title === 'jovann.me' ? title : `${title} | jovann.me`);
 	const currentUrl = $derived(`https://jovann.me${page.url.pathname}`);
+
+	const jsonLdString = $derived(
+		jsonLd ? JSON.stringify(jsonLd, null, 2) : null
+	);
 </script>
 
 <svelte:head>
@@ -51,4 +57,8 @@
 	<meta name="twitter:title" content={ogTitle || title} />
 	<meta name="twitter:description" content={ogDescription || description} />
 	<meta name="twitter:image" content={ogImage} />
+
+	{#if jsonLdString}
+		{@html `<script type="application/ld+json">${jsonLdString}</script>`}
+	{/if}
 </svelte:head>

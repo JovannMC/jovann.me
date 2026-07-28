@@ -25,6 +25,25 @@
 	title="Blog"
 	description="Some little posts where I write about stuff! Personal updates, findings, deep dives, and more."
 	keywords="JovannMC, blog, deep dives, personal updates, programming"
+	jsonLd={{
+		"@context": "https://schema.org",
+		"@type": "Blog",
+		"name": "JovannMC's Blog",
+		"description": "Some little posts where I write about stuff! Personal updates, findings, deep dives, and more.",
+		"url": "https://jovann.me/blog",
+		"author": {
+			"@type": "Person",
+			"name": "JovannMC",
+			"url": "https://jovann.me"
+		},
+		"blogPost": data.posts.map((post) => ({
+			"@type": "BlogPosting",
+			"headline": post.title,
+			"url": `https://jovann.me/blog/${post.slug}`,
+			"datePublished": post.date,
+			"description": post.description ?? undefined
+		}))
+	}}
 />
 
 <Container title="Blog">
