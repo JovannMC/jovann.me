@@ -41,7 +41,17 @@
 			"headline": post.title,
 			"url": `https://jovann.me/blog/${post.slug}`,
 			"datePublished": post.date,
-			"description": post.description ?? undefined
+			"description": post.description ?? undefined,
+            "author": {
+                "@type": "Person",
+                "name": "JovannMC",
+                "url": "https://jovann.me"
+            },
+            "publisher": {
+                "@type": "Person",
+                "name": "JovannMC",
+                "url": "https://jovann.me"
+            }
 		}))
 	}}
 />
