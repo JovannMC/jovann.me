@@ -6,6 +6,15 @@
 
 @source '../node_modules/@skeletonlabs/skeleton-svelte/dist';
 
+:root {
+	color-scheme: dark;
+}
+
+body {
+	background-color: var(--body-background-color-dark);
+	color: var(--base-font-color-dark);
+}
+
 @font-face {
 	font-family: "Quicksand";
 	src: url("/fonts/Quicksand.ttf");
